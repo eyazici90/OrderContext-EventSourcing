@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ImGalaxy.ES.Core" Version="1.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OrderContext.Domain.Messages\OrderContext.Domain.Messages.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Customers\Snapshots\" />
+  </ItemGroup>
+
+</Project>
