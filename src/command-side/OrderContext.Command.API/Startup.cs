@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ImGalaxy.ES.CosmosDB.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace OrderContext.Command.API
 {
@@ -21,28 +25,66 @@ namespace OrderContext.Command.API
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Order Command API", Version = "v1" });
+            });
+
+            services.AddOptions();
+
+            ConfigureImGalaxyEs(services);
+
+            services.AddMvc()
+             .AddJsonOptions(options =>
+             {
+                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+             })
+            .AddControllersAsServices();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
 
-            app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            });
+
+            app.UseSwagger()
+             .UseSwaggerUI(c =>
+             {
+                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Payment API V1");
+             });
+
+            app.UseMvc(routes =>
+            {
+
+                routes.MapRoute(
+                    name: "default",
+                    template: "api/{controller}/{action}/{id?}");
+            });
         }
+
+        private IServiceCollection ConfigureImGalaxyEs(IServiceCollection services) =>
+            services
+                .AddImGalaxyESCosmosDBModule(configs =>
+                {
+                    configs.DatabaseId = "<your_database_id>";
+                    configs.EventCollectionName = "<event_collection_name>";
+                    configs.StreamCollectionName = "<stream_collection_name>";
+                    configs.SnapshotCollectionName = "<snapshot_collection_name>";
+                    configs.EndpointUri = "<your_endpoint>";
+                    configs.PrimaryKey = "<your_primary>";
+                    configs.ReadBatchSize = 1000;
+                    configs.OfferThroughput = 10000;
+                });
     }
 }

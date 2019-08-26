@@ -9,10 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Handlers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="ImGalaxy.ES.CosmosDB" Version="1.1.0" />
   </ItemGroup>
 
