@@ -20,9 +20,8 @@ namespace OrderContext.Application.Commands.Handlers
 
         public async Task<Unit> Handle(ShipOrderCommand request, CancellationToken cancellationToken) =>
             await UpdateAsync(new OrderId(request.OrderNumber), async state=> 
-            {
-                Order.ShipOrder(state);
-            })
+                Order.ShipOrder(state)
+            )
             .PipeToAsync(Unit.Value);
          
     }

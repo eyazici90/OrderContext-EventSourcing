@@ -20,9 +20,8 @@ namespace OrderContext.Application.Commands.Handlers
 
         public async Task<Unit> Handle(PayOrderCommand request, CancellationToken cancellationToken)=>
            await UpdateAsync(new OrderId(request.OrderNumber), async state =>
-           {
-               Order.PayOrder(state);
-           })
+               Order.PayOrder(state)
+           )
            .PipeToAsync(Unit.Value);
     }
 }

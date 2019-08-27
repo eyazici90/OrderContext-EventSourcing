@@ -5,15 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Customers\Snapshots\**" />
+    <EmbeddedResource Remove="Customers\Snapshots\**" />
+    <None Remove="Customers\Snapshots\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ImGalaxy.ES.Core" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\OrderContext.Domain.Messages\OrderContext.Domain.Messages.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Customers\Snapshots\" />
   </ItemGroup>
 
 </Project>
