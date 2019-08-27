@@ -1,5 +1,5 @@
 # OrderContext-EventSourcing
-![enter image description here](https://raw.githubusercontent.com/eyazici90/OrderContext-EventSourcing/master/docs/solution_structure.PNG?token=AKPSEUOX6ZJZFPXQRHKVUP25MUZ3I)
+![enter image description here](https://github.com/eyazici90/OrderContext-EventSourcing/blob/master/docs/solution_structure.PNG)
 
 This repository is practical EventSourcing implementation on Azure. It mostly aims to implement CQRS, EventSourcing basics towards Serverless way on Azure. [ImGalaxy](https://github.com/eyazici90/ImGalaxy) is used for the purpose of providing to use Azure Cosmos DB as stream based EventStore and whole concepts of DDD, CQRS, EventSourcing needs. [Change Feed](https://docs.microsoft.com/en-us/azure/cosmos-db/change-feed) is being used for projecting events from [EventStore](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction).
 
@@ -16,6 +16,6 @@ This repository is practical EventSourcing implementation on Azure. It mostly ai
  
 ## Big Picture
 
-![enter image description here](https://raw.githubusercontent.com/eyazici90/OrderContext-EventSourcing/master/docs/big_picture.jpg?token=AKPSEUOWEOD5BWJHKACMPRS5MUZ4S)
+![enter image description here](https://github.com/eyazici90/OrderContext-EventSourcing/blob/master/docs/big_picture.jpg)
 
 
