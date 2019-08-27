@@ -12,5 +12,6 @@ namespace OrderContext.Domain.Orders.Snapshots
         public string BuyerId { get; set; }
         public DateTime OrderDate { get; set; }
         public string OrderStatus { get; set; }
+        public IEnumerable<OrderItemStateSnapshot> OrderItems { get; set; }
     }
 }
