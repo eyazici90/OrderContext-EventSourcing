@@ -48,7 +48,7 @@ namespace OrderContext.Domain.Orders
            {
                state._id = new OrderId(@event.OrderId);
                state._buyerId = new CustomerId(@event.BuyerId);
-               state._address = Adress.Create(@event.Street, @event.City, string.Empty, string.Empty, string.Empty);
+               state._address = Address.Create(@event.Street, @event.City, string.Empty, string.Empty, string.Empty);
                state._orderStatus = OrderStatus.Submitted;
                state._orderDate = DateTime.Now;
            }); 
@@ -81,9 +81,21 @@ namespace OrderContext.Domain.Orders
             With(this, state=> 
             {
                 var snapshot = (OrderStateSnapshot)stateSnapshot;
+                state._id = new OrderId(snapshot.Id);
+                state._buyerId = new CustomerId(snapshot.BuyerId);
+                state._orderDate = snapshot.OrderDate;
+                state._address = state._address ?? Address.Create(snapshot.Street, snapshot.City, string.Empty, string.Empty, string.Empty);
             });
 
         public object TakeSnapshot()=>
-            new OrderStateSnapshot();
+            new OrderStateSnapshot
+            {
+                Id = this._id,
+                BuyerId = this._buyerId,
+                City = this._address.City,
+                OrderDate = this._orderDate,
+                Street = this._address.Street,
+                OrderStatus = this._orderStatus.Name
+            };
     }
 }

@@ -15,6 +15,8 @@ namespace OrderContext.Domain.Orders
 
         private readonly int _id;
         private readonly string _name;
+
+        public string Name => _name;
         private OrderStatus(int id, string name)
         {
             _id = id;
