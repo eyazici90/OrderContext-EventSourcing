@@ -1,4 +1,5 @@
-﻿using OrderContext.Domain.Customers;
+﻿using ImGalaxy.ES.Core;
+using OrderContext.Domain.Customers;
 using OrderContext.Domain.Messages.Orders;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ namespace OrderContext.Domain.Orders
             new OrderState(id, buyerId).ApplyEvent(new OrderStartedEvent(id, buyerId, city, street));
 
         public static OrderState.Result ShipOrder(OrderState state) =>
-            state.ApplyEvent(new OrderShippedEvent(state.Id));
+            state.ThrowsIf(s => s.OrderStatus != OrderStatus.Paid, new OrderNotPaidYetException(state.Id))
+                 .Then(s=> s.ApplyEvent(new OrderShippedEvent(state.Id)));
 
         public static OrderState.Result PayOrder(OrderState state) =>
            state.ApplyEvent(new OrderPaidEvent(state.Id));

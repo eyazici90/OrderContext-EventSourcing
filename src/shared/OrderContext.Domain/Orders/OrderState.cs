@@ -23,6 +23,8 @@ namespace OrderContext.Domain.Orders
 
         public OrderId Id => _id;
 
+        public OrderStatus OrderStatus => _orderStatus;
+
         private OrderState()
         {
             RegisterEvent<OrderStartedEvent>(When);

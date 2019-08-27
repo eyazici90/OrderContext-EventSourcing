@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ImGalaxy.ES.CosmosDB.Modules;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using OrderContext.Application.Commands.Handlers;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace OrderContext.Command.API
@@ -35,9 +37,14 @@ namespace OrderContext.Command.API
 
             services.AddOptions();
 
+            services.AddMediatR(typeof(CreateOrderCommandHandler).Assembly);
+
             ConfigureImGalaxyEs(services);
 
-            services.AddMvc()
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+            })
              .AddJsonOptions(options =>
              {
                  options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -47,12 +54,7 @@ namespace OrderContext.Command.API
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
+        {  
             app.UseCors(builder =>
             {
                 builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
@@ -61,8 +63,13 @@ namespace OrderContext.Command.API
             app.UseSwagger()
              .UseSwaggerUI(c =>
              {
-                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Payment API V1");
+                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Order Command API V1");
              });
+
+            app.ApplicationServices
+                .UseGalaxyESCosmosDBModule()
+                .ConfigureAwait(false)
+                .GetAwaiter().GetResult();
 
             app.UseMvc(routes =>
             {
@@ -77,13 +84,13 @@ namespace OrderContext.Command.API
             services
                 .AddImGalaxyESCosmosDBModule(configs =>
                 {
-                    configs.DatabaseId = "<your_database_id>";
-                    configs.EventCollectionName = "<event_collection_name>";
-                    configs.StreamCollectionName = "<stream_collection_name>";
-                    configs.SnapshotCollectionName = "<snapshot_collection_name>";
-                    configs.EndpointUri = "<your_endpoint>";
-                    configs.PrimaryKey = "<your_primary>";
-                    configs.ReadBatchSize = 1000;
+                    configs.DatabaseId = "OrderContextES";
+                    configs.EventCollectionName = "Events";
+                    configs.StreamCollectionName = "Streams";
+                    configs.SnapshotCollectionName = "Snapshots";
+                    configs.EndpointUri = "https://localhost:8081";
+                    configs.PrimaryKey = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
+                    configs.ReadBatchSize = 1000; 
                     configs.OfferThroughput = 10000;
                 });
     }
