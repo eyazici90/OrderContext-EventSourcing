@@ -12,9 +12,12 @@ This repository is practical EventSourcing implementation on Azure. It mostly ai
  - [ImGalaxy](https://github.com/eyazici90/ImGalaxy) for base structure of **Aggregate** modelling and Stream based persistance of **Azure Cosmos DB**
  - [MediatR](https://github.com/jbogard/MediatR) for seperating **command** and **queries**
  - [Microsoft.Azure.WebJobs.Extensions.CosmosDB](https://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions.CosmosDB) for connecting Change Feed processor
+ 
+ 
+## Big Picture
+![enter image description here](https://raw.githubusercontent.com/eyazici90/OrderContext-EventSourcing/master/docs/big_picture.jpg?token=AKPSEUNE7BQDHL5XQDKXQLS5MUYGS)
 
 ## Domain Model
 ![enter image description here](https://raw.githubusercontent.com/eyazici90/OrderContext-EventSourcing/master/docs/domain_model.jpg?token=AKPSEUOW2RFSRD2YRJFC2NK5MUYE2)
  
-## Big Picture
-![enter image description here](https://raw.githubusercontent.com/eyazici90/OrderContext-EventSourcing/master/docs/big_picture.jpg?token=AKPSEUNE7BQDHL5XQDKXQLS5MUYGS)
+
