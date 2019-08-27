@@ -84,12 +84,12 @@ namespace OrderContext.Command.API
             services
                 .AddImGalaxyESCosmosDBModule(configs =>
                 {
-                    configs.DatabaseId = "OrderContextES";
+                    configs.DatabaseId = ".";
                     configs.EventCollectionName = "Events";
                     configs.StreamCollectionName = "Streams";
                     configs.SnapshotCollectionName = "Snapshots";
-                    configs.EndpointUri = "https://localhost:8081";
-                    configs.PrimaryKey = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
+                    configs.EndpointUri = ".";
+                    configs.PrimaryKey = ".";
                     configs.ReadBatchSize = 1000;
                     configs.IsSnapshottingOn = true;
                     configs.OfferThroughput = 10000;

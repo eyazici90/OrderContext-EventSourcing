@@ -8,6 +8,10 @@
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\shared\OrderContext.Domain.Messages\OrderContext.Domain.Messages.csproj" />
+    <ProjectReference Include="..\..\shared\OrderContext.Integration.Events\OrderContext.Integration.Events.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

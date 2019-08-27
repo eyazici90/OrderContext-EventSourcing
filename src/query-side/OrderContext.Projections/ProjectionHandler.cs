@@ -7,7 +7,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using OrderContext.Domain.Messages.Orders;
+using OrderContext.Domain.Messages.Orders; 
 using OrderContextQueryClient;
 using OrderCancelledEvent = OrderContext.Domain.Messages.Orders.OrderCancelledEvent;
 using OrderPaidEvent = OrderContext.Domain.Messages.Orders.OrderPaidEvent;
@@ -20,9 +20,9 @@ namespace OrderContext.Projections
     {
         [FunctionName("ProjectionHandler")]
         public static async Task Run([CosmosDBTrigger(
-            databaseName: "OrderContextES",
-            collectionName: "Events",
-            ConnectionStringSetting = "ConStr",
+            databaseName: ".",
+            collectionName: ".",
+            ConnectionStringSetting = ".",
             LeaseCollectionName = "leases-projection",
             StartFromBeginning = true,
             CreateLeaseCollectionIfNotExists = true)]IReadOnlyList<Document> input, ILogger log)
@@ -47,44 +47,37 @@ namespace OrderContext.Projections
             }
         }
 
-        private static async Task SendOrderStarted(OrderStartedEvent @event)
-        {
-            var client = new Client("http://localhost:5001", HttpClientFactory.Create());
-            await client.WhenAsync(new OrderContextQueryClient.OrderStartedEvent
+        private static async Task SendOrderStarted(OrderStartedEvent @event)=>
+            await OrderContextHttpClient.WhenAsync(new OrderContextQueryClient.OrderStartedEvent
             {
                 BuyerId = @event.BuyerId,
                 City = @event.City,
                 OrderId = @event.OrderId,
                 Street = @event.Street
             });
+        
 
-        }
-
-        private static async Task SendOrderPaid(OrderPaidEvent @event)
-        {
-            var client = new Client("http://localhost:5001", HttpClientFactory.Create());
-            await client.WhenAsync(new OrderContextQueryClient.OrderPaidEvent
+        private static async Task SendOrderPaid(OrderPaidEvent @event)=>
+            await OrderContextHttpClient.WhenAsync(new OrderContextQueryClient.OrderPaidEvent
             {
                 OrderId = @event.OrderId
             }); 
-        }
+        
 
-        private static async Task SendOrderShipped(OrderShippedEvent @event)
-        {
-            var client = new Client("http://localhost:5001", HttpClientFactory.Create());
-            await client.WhenAsync(new OrderContextQueryClient.OrderShippedEvent
+        private static async Task SendOrderShipped(OrderShippedEvent @event)=> 
+            await OrderContextHttpClient.WhenAsync(new OrderContextQueryClient.OrderShippedEvent
             {
                 OrderId = @event.OrderId
             });
-        }
-        private static async Task SendOrderCancelled(OrderCancelledEvent @event)
-        {
-            var client = new Client("http://localhost:5001", HttpClientFactory.Create());
-            await client.WhenAsync(new OrderContextQueryClient.OrderCancelledEvent
+        
+        private static async Task SendOrderCancelled(OrderCancelledEvent @event)=>
+            await OrderContextHttpClient.WhenAsync(new OrderContextQueryClient.OrderCancelledEvent
             {
                 OrderId = @event.OrderId
             });
-        }
+        
+
+        private static Client OrderContextHttpClient => new Client("http://localhost:5001", HttpClientFactory.Create());
         private static dynamic CastEventToDynamic(Document @event)
         {
             var eData = ((dynamic)@event).Data;
