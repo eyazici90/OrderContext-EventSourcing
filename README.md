@@ -1,3 +1,4 @@
+
 # OrderContext-EventSourcing
 ![enter image description here](https://github.com/eyazici90/OrderContext-EventSourcing/blob/master/docs/solution_structure.PNG)
 
@@ -18,4 +19,17 @@ This repository is practical EventSourcing implementation on Azure. It mostly ai
 
 ![enter image description here](https://github.com/eyazici90/OrderContext-EventSourcing/blob/master/docs/big_picture.jpg)
 
+## Requests processing CQRS
+Command and Query model are separated by applying  CQRS (Command Query Responsibility Segregation) technic.
+
+![enter image description here](https://github.com/eyazici90/OrderContext-EventSourcing/blob/master/docs/command_workflow.jpg)
+
+
+## Deploy
+
+....
+
+## To Do
+
+ - Integration Testing
 
