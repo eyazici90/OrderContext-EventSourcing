@@ -18,13 +18,13 @@ namespace OrderContext.Domain.Orders
                  .Then(s=> s.ApplyEvent(new OrderShippedEvent(state.Id)));
 
         public static OrderState.Result PayOrder(OrderState state) =>
-           state.ApplyEvent(new OrderPaidEvent(state.Id));
+            state.ApplyEvent(new OrderPaidEvent(state.Id));
 
         public static OrderState.Result CancelOrder(OrderState state) =>
-           state.ApplyEvent(new OrderCancelledEvent(state.Id));
+            state.ApplyEvent(new OrderCancelledEvent(state.Id));
 
         public static OrderState.Result AddOrderItem(OrderState state, OrderItemId itemId, ProductId productId,
                     decimal unitPrice, decimal discount) =>
-            state.ApplyEvent(new OrderItemAddedEvent(itemId, state.Id, productId, unitPrice, discount));
+           state.ApplyEvent(new OrderItemAddedEvent(itemId, state.Id, productId, unitPrice, discount));
     }
 }

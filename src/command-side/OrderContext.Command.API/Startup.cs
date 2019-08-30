@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.AspNetCore;
 using ImGalaxy.ES.CosmosDB.Modules;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using OrderContext.Application.Commands.Handlers;
+using OrderContext.Application.Validations;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace OrderContext.Command.API
@@ -45,12 +47,11 @@ namespace OrderContext.Command.API
             {
                 options.Filters.Add(typeof(HttpGlobalExceptionFilter));
             })
-             .AddJsonOptions(options =>
-             {
-                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-             })
-            .AddControllersAsServices();
+            .AddFluentValidation(fv => 
+            {
+                fv.RegisterValidatorsFromAssemblyContaining<CreateOrderCommandValidator>();
+                fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
