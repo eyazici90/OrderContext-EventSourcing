@@ -28,8 +28,5 @@ Command and Query model are separated by applying  CQRS (Command Query Responsib
 ## Deploy
 
 ....
-
-## To Do
-
- - Integration Testing
+ 
 
