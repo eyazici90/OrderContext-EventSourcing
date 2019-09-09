@@ -19,14 +19,12 @@ namespace OrderContext.Application.Commands.Handlers
         {
         }
 
-        public async Task<Unit> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
-        {
-            var newOrderId = OrderId.New;
-            return  await AddAsync(async () => Order.Create(newOrderId, new CustomerId(request.BuyerId), request.City, request.Street)
+        public async Task<Unit> Handle(CreateOrderCommand request, CancellationToken cancellationToken)=>
+            await AddAsync(async () => Order.Create(new OrderId(request.OrderId), new CustomerId(request.BuyerId), request.City, request.Street)
                                             .State,
-                                            newOrderId)
+                                            request.OrderId)
                   .PipeToAsync(Unit.Value);
-        }
+        
        
     }
 }

@@ -6,7 +6,7 @@ namespace OrderContext.Domain.Orders
 { 
     public class OrderItemId
     {
-        public static OrderId New => new OrderId(Guid.NewGuid().ToString());
+        public static OrderItemId New => new OrderItemId(Guid.NewGuid().ToString());
 
         public readonly string Id;
         public OrderItemId(string id) => Id = id;
