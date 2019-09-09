@@ -51,5 +51,6 @@ Command and Query model are separated by applying  CQRS (Command Query Responsib
 ## Deploy
 
 ....
- 
+ ## Licence
+ The project is under [MIT license](https://opensource.org/licenses/MIT).
 
