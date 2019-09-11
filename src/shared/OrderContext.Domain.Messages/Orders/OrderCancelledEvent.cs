@@ -7,7 +7,7 @@ namespace OrderContext.Domain.Messages.Orders
 {
     public class OrderCancelledEvent : INotification
     {
-        public readonly string OrderId;
+        public string OrderId { get; }
         public OrderCancelledEvent(string orderId)
         {
             OrderId = orderId;

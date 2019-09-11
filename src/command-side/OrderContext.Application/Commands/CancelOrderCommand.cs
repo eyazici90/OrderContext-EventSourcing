@@ -10,7 +10,7 @@ namespace OrderContext.Application.Commands
     public class CancelOrderCommand : IRequest
     {
         [DataMember]
-        public readonly string OrderNumber;
+        public string OrderNumber { get; }
 
         public CancelOrderCommand(string orderNumber)
         {

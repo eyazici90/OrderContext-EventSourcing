@@ -10,13 +10,13 @@ namespace OrderContext.Application.Commands
     public class CreateOrderCommand : IRequest
     {
         [DataMember]
-        public readonly string OrderId;
+        public string OrderId { get; }
         [DataMember]
-        public readonly string BuyerId;
+        public string BuyerId { get; }
         [DataMember]
-        public readonly string City;
+        public string City { get; }
         [DataMember]
-        public readonly string Street;
+        public string Street { get; }
         public CreateOrderCommand(string orderId, string buyerId, 
             string city, string street)
         {

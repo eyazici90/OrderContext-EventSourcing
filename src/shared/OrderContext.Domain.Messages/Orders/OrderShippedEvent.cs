@@ -7,7 +7,7 @@ namespace OrderContext.Domain.Messages.Orders
 {
     public class OrderShippedEvent : INotification
     {
-        public readonly string OrderId;
+        public string OrderId { get; }
         public OrderShippedEvent(string orderId)
         {
             OrderId = orderId;

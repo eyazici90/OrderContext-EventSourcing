@@ -10,7 +10,7 @@ namespace OrderContext.Application.Commands
     public class PayOrderCommand : IRequest
     {
         [DataMember]
-        public readonly string OrderNumber;
+        public string OrderNumber { get; }
 
         public PayOrderCommand(string orderNumber)
         {

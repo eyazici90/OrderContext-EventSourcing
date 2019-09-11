@@ -10,7 +10,7 @@ namespace OrderContext.Integration.Events
         {
             public class OrderStartedEvent 
             {
-                public readonly string OrderId; 
+                public string OrderId { get; }
                 public OrderStartedEvent(string orderId)
                 {
                     OrderId = orderId;

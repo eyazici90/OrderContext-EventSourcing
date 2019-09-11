@@ -7,14 +7,11 @@ namespace OrderContext.Domain.Messages.Orders
 {
     public class OrderItemAddedEvent : INotification
     {
-        public readonly string OrderItemId;
-        public readonly string OrderId;
-
-        public readonly string ProductId;
-
-        public readonly decimal UnitPrice;
-
-        public readonly decimal Discount;
+        public string OrderItemId { get; }
+        public string OrderId { get; }
+        public string ProductId { get; }
+        public decimal UnitPrice { get; }
+        public decimal Discount { get; }
         public OrderItemAddedEvent(string orderItemId, string orderId, string productId, 
             decimal unitPrice, decimal discount)
         {
@@ -24,5 +21,6 @@ namespace OrderContext.Domain.Messages.Orders
             UnitPrice = unitPrice;
             Discount = discount;
         }
+ 
     }
 }

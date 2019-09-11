@@ -7,10 +7,10 @@ namespace OrderContext.Domain.Messages.Orders
 {
     public class OrderStartedEvent: INotification
     {
-        public readonly string OrderId;
-        public readonly string BuyerId;
-        public readonly string City;
-        public readonly string Street;
+        public string OrderId { get; }
+        public string BuyerId { get; }
+        public string City { get; }
+        public string Street { get; }
         public OrderStartedEvent(string orderId, string buyerId, 
             string city, string street)
         {
