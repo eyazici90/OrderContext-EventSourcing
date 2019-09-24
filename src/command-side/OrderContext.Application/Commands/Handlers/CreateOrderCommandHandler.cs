@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace OrderContext.Application.Commands.Handlers
 {
     public class CreateOrderCommandHandler : CommandHandlerBase<OrderState, OrderId>,
-        IRequestHandler<CreateOrderCommand>
+        IRequestHandler<CreateOrderCommand, OrderId>
     {
         public CreateOrderCommandHandler(IUnitOfWork unitOfWork, 
             IAggregateRootRepository<OrderState> rootRepository) 
@@ -19,11 +19,15 @@ namespace OrderContext.Application.Commands.Handlers
         {
         }
 
-        public async Task<Unit> Handle(CreateOrderCommand request, CancellationToken cancellationToken)=>
-            await AddAsync(async () => Order.Create(new OrderId(request.OrderId), new CustomerId(request.BuyerId), request.City, request.Street)
-                                            .State,
-                                            request.OrderId)
-                  .PipeToAsync(Unit.Value);
+        public async Task<OrderId> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
+        {
+            var newId = OrderId.New;
+            return await AddAsync(async () => Order.Create(newId, new CustomerId(request.BuyerId), request.City, request.Street)
+                                           .State,
+                                           newId)
+                 .PipeToAsync(newId);
+        }
+           
         
        
     }

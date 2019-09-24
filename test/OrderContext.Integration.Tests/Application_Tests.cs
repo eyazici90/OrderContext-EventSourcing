@@ -18,12 +18,11 @@ namespace OrderContext.Integration.Tests
         protected override IServiceCollection ConfigureServices(IServiceCollection services) =>
           OrderContextIntegrationConfigurator.Configure(services);
 
-        private readonly OrderId _fakeOrderId;
+        private OrderId _fakeOrderId;
         private readonly IMediator _mediatr;
         public Application_Tests()
         {
-            _mediatr = GetRequiredService<IMediator>();
-            _fakeOrderId = OrderId.New;
+            _mediatr = GetRequiredService<IMediator>(); 
 
             SeedOrder().ConfigureAwait(false)
                 .GetAwaiter().GetResult();
@@ -33,25 +32,23 @@ namespace OrderContext.Integration.Tests
         {
             var fakeBuyerId = CustomerId.New;
 
-            var command = new CreateOrderCommand(_fakeOrderId, fakeBuyerId, "Amsterdam", "Fake Street-1");
+            var command = new CreateOrderCommand(fakeBuyerId, "Amsterdam", "Fake Street-1");
 
-            await _mediatr.Send(command);
+            _fakeOrderId = await _mediatr.Send(command); 
         }
 
 
         [Fact]
 
         public async Task create_order_command_with_valid_command_should_success()
-        {
-            var fakeId = OrderId.New;
-
+        {  
             var fakeCity = "Istanbul";
 
-            var command = new CreateOrderCommand(fakeId, CustomerId.New, fakeCity, "Fake-1");
+            var command = new CreateOrderCommand(CustomerId.New, fakeCity, "Fake-1");
 
             var result = await _mediatr.Send(command);
 
-            result.Should().Be(Unit.Value);
+            result.Should().NotBeNull();
         }
 
 

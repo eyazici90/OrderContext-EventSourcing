@@ -45,10 +45,10 @@ namespace OrderContext.Snapshotter.Application
 
             var alterationRootRep = scope.ServiceProvider.GetRequiredService<IAggregateRootRepository<TAggregateRoot>>();
 
-            var unitofWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
+            var changeTracker = scope.ServiceProvider.GetRequiredService<IChangeTracker>();
             var serializer = scope.ServiceProvider.GetRequiredService<IEventSerializer>();
 
-            return new SnapshotterCosmosDB<TAggregateRoot, TSnapshot>(alterationRootRep, unitofWork, cosmosClient, configurations,
+            return new SnapshotterCosmosDB<TAggregateRoot, TSnapshot>(alterationRootRep, changeTracker, cosmosClient, configurations,
                serializer);
         }
     }

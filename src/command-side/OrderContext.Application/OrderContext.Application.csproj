@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="8.4.0" />
-    <PackageReference Include="ImGalaxy.ES.CosmosDB" Version="1.1.0" />
+    <PackageReference Include="ImGalaxy.ES.CosmosDB" Version="1.2.0" />
   </ItemGroup>
 
 </Project>

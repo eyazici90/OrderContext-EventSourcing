@@ -18,9 +18,9 @@ namespace OrderContext.Projections
 
         [FunctionName("ProjectionHandler")]
         public async Task Run([CosmosDBTrigger(
-            databaseName: ".",
-            collectionName: ".",
-            ConnectionStringSetting = ".",
+            databaseName: "OrderContextES",
+            collectionName: "Events",
+            ConnectionStringSetting = "ConStr",
             LeaseCollectionName = "leases-projection",
             StartFromBeginning = true,
             CreateLeaseCollectionIfNotExists = true)]IReadOnlyList<Document> input, ILogger log)
@@ -29,23 +29,23 @@ namespace OrderContext.Projections
             {
                 switch (CastEventToDynamic(@event))
                 {
-                    case OrderStartedEvent e:
+                    case OrderContext.Domain.Messages.Orders.OrderStartedEvent e:
                         await SendOrderStarted(e);
                         break;
-                    case OrderPaidEvent e:
+                    case Domain.Messages.Orders.OrderPaidEvent e:
                         await SendOrderPaid(e);
                         break;
-                    case OrderShippedEvent e:
+                    case Domain.Messages.Orders.OrderShippedEvent e:
                         await SendOrderShipped(e);
                         break;
-                    case OrderCancelledEvent e:
+                    case Domain.Messages.Orders.OrderCancelledEvent e:
                         await SendOrderCancelled(e);
                         break;
                 }
             }
         }
 
-        private async Task SendOrderStarted(OrderStartedEvent @event)=>
+        private async Task SendOrderStarted(Domain.Messages.Orders.OrderStartedEvent @event)=>
             await _client.WhenAsync(new OrderStartedEvent
             {
                 BuyerId = @event.BuyerId,
@@ -55,20 +55,20 @@ namespace OrderContext.Projections
             });
         
 
-        private async Task SendOrderPaid(OrderPaidEvent @event)=>
+        private async Task SendOrderPaid(Domain.Messages.Orders.OrderPaidEvent @event)=>
             await _client.WhenAsync(new OrderPaidEvent
             {
                 OrderId = @event.OrderId
             }); 
         
 
-        private async Task SendOrderShipped(OrderShippedEvent @event)=> 
+        private async Task SendOrderShipped(Domain.Messages.Orders.OrderShippedEvent @event)=> 
             await _client.WhenAsync(new OrderShippedEvent
             {
                 OrderId = @event.OrderId
             });
         
-        private async Task SendOrderCancelled(OrderCancelledEvent @event)=>
+        private async Task SendOrderCancelled(Domain.Messages.Orders.OrderCancelledEvent @event)=>
             await _client.WhenAsync(new OrderCancelledEvent
             {
                 OrderId = @event.OrderId

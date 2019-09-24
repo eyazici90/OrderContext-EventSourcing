@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using OrderContext.Domain.Orders;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -7,20 +8,17 @@ using System.Text;
 namespace OrderContext.Application.Commands
 {
     [DataContract]
-    public class CreateOrderCommand : IRequest
-    {
+    public class CreateOrderCommand : IRequest<OrderId>
+    { 
         [DataMember]
-        public string OrderId { get; }
+        public readonly string BuyerId;
         [DataMember]
-        public string BuyerId { get; }
+        public readonly string City;
         [DataMember]
-        public string City { get; }
-        [DataMember]
-        public string Street { get; }
-        public CreateOrderCommand(string orderId, string buyerId, 
+        public readonly string Street;
+        public CreateOrderCommand(string buyerId, 
             string city, string street)
-        {
-            OrderId = orderId;
+        { 
             BuyerId = buyerId;
             City = city;
             Street = street;

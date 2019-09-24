@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ImGalaxy.ES.Core" Version="1.0.4" />
+    <PackageReference Include="ImGalaxy.ES.Core" Version="1.0.5" />
   </ItemGroup>
 
   <ItemGroup>

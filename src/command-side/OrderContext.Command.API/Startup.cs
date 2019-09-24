@@ -85,7 +85,7 @@ namespace OrderContext.Command.API
             services
                 .AddImGalaxyESCosmosDBModule(configs =>
                 {
-                    configs.DatabaseId = ".";
+                    configs.DatabaseId = "OrderContextES";
                     configs.EventCollectionName = "Events";
                     configs.StreamCollectionName = "Streams";
                     configs.SnapshotCollectionName = "Snapshots";

@@ -4,11 +4,11 @@
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="ImGalaxy.ES.CosmosDB" Version="1.1.0" />
+    <PackageReference Include="ImGalaxy.ES.CosmosDB" Version="1.2.0" />
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.0.0" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.3" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.4" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.29" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\shared\OrderContext.Domain\OrderContext.Domain.csproj" />
