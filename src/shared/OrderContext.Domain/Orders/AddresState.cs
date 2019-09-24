@@ -7,11 +7,11 @@ namespace OrderContext.Domain.Orders
 {
     public class AddresState : ValueObject
     {
-        public readonly string Street;
-        public readonly string City;
-        public readonly string State;
-        public readonly string Country;
-        public readonly string ZipCode;
+        public string Street { get; }
+        public string City { get; }
+        public string State { get; }
+        public string Country { get; }
+        public string ZipCode { get; }
 
         private AddresState() { }
 

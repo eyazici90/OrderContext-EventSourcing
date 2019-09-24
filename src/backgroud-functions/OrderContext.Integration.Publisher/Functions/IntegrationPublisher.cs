@@ -12,10 +12,14 @@ using OrderContext.Integration.Publisher.Application;
 
 namespace OrderContext.Integration.Publisher
 {
-    public static class IntegrationPublisher
+    public class IntegrationPublisher
     {
+        private readonly IEventBus _eventBus;
+        public IntegrationPublisher(IEventBus eventBus) =>
+            _eventBus = eventBus;
+         
         [FunctionName("IntegrationPublisher")]
-        public static async Task Run([CosmosDBTrigger(
+        public async Task Run([CosmosDBTrigger(
             databaseName: ".",
             collectionName: ".",
             ConnectionStringSetting = ".",
@@ -32,12 +36,9 @@ namespace OrderContext.Integration.Publisher
                         break; 
                 }
             }
-        }
+        } 
 
-        private static readonly IEventBus _eventBus = new NullInstanceEventBus();
-         
-
-        private static dynamic CastEventToDynamic(Document @event)
+        private dynamic CastEventToDynamic(Document @event)
         {
             var eData = ((dynamic)@event).Data;
             var eType = ((dynamic)@event).Type;
