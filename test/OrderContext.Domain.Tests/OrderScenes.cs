@@ -12,7 +12,7 @@ using Xunit;
 
 namespace OrderContext.Domain.Tests
 {
-    public class OrderScens
+    public class OrderScenes
     {
         [Fact]
         public void creating_new_order_with_valid_state_should_create_order_success()

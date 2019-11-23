@@ -13,14 +13,12 @@ namespace OrderContext.Domain.Orders
         public static OrderStatus Shipped = new OrderStatus(5, nameof(Shipped).ToLowerInvariant());
         public static OrderStatus Cancelled = new OrderStatus(6, nameof(Cancelled).ToLowerInvariant());
 
-        private readonly int _id;
-        private readonly string _name;
-
-        public string Name => _name;
+        private readonly int _id; 
+        public string Name { get; }
         private OrderStatus(int id, string name)
         {
             _id = id;
-            _name = name;
+            Name = name;
         }
     }
 }

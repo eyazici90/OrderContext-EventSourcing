@@ -13,14 +13,13 @@ namespace OrderContext.Command.API
     {
         private readonly IHostingEnvironment _env;
 
-        public HttpGlobalExceptionFilter(IHostingEnvironment env)
-        {
+        public HttpGlobalExceptionFilter(IHostingEnvironment env) =>
             this._env = env ?? throw new ArgumentNullException(nameof(env));
-        }
+        
         public void OnException(ExceptionContext context)
         {
             context.Result = new OkObjectResult(context.Exception.Message);
-            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.OK;
+            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             context.ExceptionHandled = true;
         }
     }

@@ -29,7 +29,7 @@ namespace OrderContext.Projections
             {
                 switch (CastEventToDynamic(@event))
                 {
-                    case OrderContext.Domain.Messages.Orders.OrderStartedEvent e:
+                    case Domain.Messages.Orders.OrderStartedEvent e:
                         await SendOrderStarted(e);
                         break;
                     case Domain.Messages.Orders.OrderPaidEvent e:
