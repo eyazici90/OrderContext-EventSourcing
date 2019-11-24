@@ -16,7 +16,9 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using OrderContext.Application.Commands.Handlers;
+using OrderContext.Application.Infrastructure.Orders;
 using OrderContext.Application.Validations;
+using OrderContext.Domain.Orders;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace OrderContext.Command.API
@@ -40,6 +42,8 @@ namespace OrderContext.Command.API
             services.AddOptions();
 
             services.AddMediatR(typeof(CreateOrderCommandHandler).Assembly);
+
+            services.AddTransient<IOrderPolicy, OrderPolicy>();
 
             ConfigureImGalaxyEs(services);
 

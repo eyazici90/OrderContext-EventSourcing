@@ -1,13 +1,10 @@
-﻿using FluentAssertions;
-using ImGalaxy.ES.TestBase;
+﻿using ImGalaxy.ES.TestBase;
+using Moq;
 using OrderContext.Domain.Customers;
 using OrderContext.Domain.Messages.Orders;
 using OrderContext.Domain.Orders;
 using OrderContext.Domain.Products;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace OrderContext.Domain.Tests
@@ -25,7 +22,7 @@ namespace OrderContext.Domain.Tests
             var newOrder = Order.Create(fakeOrderId, fakeBuyerId, fakeCity, fakeStreet);
 
             CommandScenarioFor<OrderState>.With
-                (newOrder.State) 
+                (newOrder.State)
                 .WhenNone()
                 .Then(new OrderStartedEvent(fakeOrderId, fakeBuyerId, fakeCity, fakeStreet))
                 .Assert();
@@ -39,7 +36,7 @@ namespace OrderContext.Domain.Tests
             CommandScenarioFor<OrderState>.With
               (
                   existingOrder
-              ) 
+              )
               .When(s => Order.PayOrder(s))
               .Then(new OrderPaidEvent(existingOrder.Id.ToString()))
               .Assert();
@@ -80,11 +77,18 @@ namespace OrderContext.Domain.Tests
         public void ship_order_without_paid_state_should_throw()
         {
             var order = FakeOrder;
+            var moq = new Mock<IOrderPolicy>();
+
+            moq.Setup(p => p.Apply(It.IsAny<OrderShouldBePaidBeforeShip>()))
+                .Throws<OrderNotPaidYetException>();
+
+            IOrderPolicy policy = moq.Object;
+
             CommandScenarioFor<OrderState>.With
               (
                   order
-              ) 
-              .When(s => Order.ShipOrder(order))
+              )
+              .When(s => Order.ShipOrder(order, policy))
               .Throws(typeof(OrderNotPaidYetException))
               .Assert();
         }
@@ -94,7 +98,7 @@ namespace OrderContext.Domain.Tests
         {
             get
             {
-                var order = Order.Create(OrderId.New, CustomerId.New , "Amsterdam", "Fake Street").State;
+                var order = Order.Create(OrderId.New, CustomerId.New, "Amsterdam", "Fake Street").State;
                 order.ClearEvents();
                 return order;
             }

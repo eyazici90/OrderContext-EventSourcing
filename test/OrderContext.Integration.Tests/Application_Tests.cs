@@ -13,11 +13,8 @@ using Xunit;
 
 namespace OrderContext.Integration.Tests
 {
-    public class Application_Tests : ImGalaxyIntegrationTestBase
-    {
-        protected override IServiceCollection ConfigureServices(IServiceCollection services) =>
-          OrderContextIntegrationConfigurator.Configure(services);
-
+    public class Application_Tests : OrderContextIntegrationTestBase
+    { 
         private OrderId _fakeOrderId;
         private readonly IMediator _mediatr;
         public Application_Tests()
@@ -59,7 +56,17 @@ namespace OrderContext.Integration.Tests
 
             var result = await _mediatr.Send(command);
 
-            result.Should().Be(Unit.Value); 
+            result.Should().Be(Unit.Value);
+        }
+
+        [Fact]
+        public async Task ship_command_not_paid_order_should_throw()
+        {
+            var command = new ShipOrderCommand(_fakeOrderId);
+
+            Func<Task> func = async () => await _mediatr.Send(command);
+
+            func.Should().Throw<OrderNotPaidYetException>();
         }
 
 

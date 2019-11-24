@@ -2,9 +2,8 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using OrderContext.Application.Commands.Handlers;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using OrderContext.Application.Infrastructure.Orders;
+using OrderContext.Domain.Orders; 
 
 namespace OrderContext.Integration.Tests
 {
@@ -12,6 +11,7 @@ namespace OrderContext.Integration.Tests
     {
         public static IServiceCollection Configure(IServiceCollection services) =>
             services.AddMediatR(typeof(CreateOrderCommandHandler).Assembly)
+                    .AddTransient<IOrderPolicy, OrderPolicy>()
                     .AddImGalaxyESInMemoryModule();
     }
 }
