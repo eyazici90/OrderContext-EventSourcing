@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\shared\OrderContext.Domain.Messages\OrderContext.Domain.Messages.csproj" />
+    <ProjectReference Include="..\..\..\shared\OrderContext.Domain.Messages\OrderContext.Domain.Messages.csproj" />
   </ItemGroup>
 
 </Project>
