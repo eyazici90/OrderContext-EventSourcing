@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ImGalaxy.ES.Core;
+using System; 
 
 namespace OrderContext.Domain.Orders
 { 
-    public class OrderItemId
+    public class OrderItemId : Identity<string>
     {
         public static OrderItemId New => new OrderItemId(Guid.NewGuid().ToString());
-
-        public readonly string Id;
-        public OrderItemId(string id) => Id = id;
-        public override string ToString() => Id;
+        public OrderItemId(string id) : base(id)
+        {
+        } 
 
         public static implicit operator string(OrderItemId self) => self.Id;
 

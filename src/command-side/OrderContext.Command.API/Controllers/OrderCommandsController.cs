@@ -20,24 +20,28 @@ namespace OrderContext.Command.API.Controllers
          
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task CreateOrder([FromBody]CreateOrderCommand command) =>
            await _mediatr.Send(command);
 
         [Route("cancel")]
         [HttpPut]
         [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task CancelOrder([FromBody]CancelOrderCommand command) =>
             await _mediatr.Send(command);
 
         [Route("ship")]
         [HttpPut]
         [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task ShipOrder([FromBody]ShipOrderCommand command) =>
           await _mediatr.Send(command);
 
         [Route("pay")]
         [HttpPut]
         [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task PayOrder([FromBody]PayOrderCommand command) =>
             await _mediatr.Send(command);
 

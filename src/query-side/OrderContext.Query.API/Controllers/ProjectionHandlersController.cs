@@ -36,8 +36,8 @@ namespace OrderContext.Query.API.Controllers
         public async Task When([FromBody]OrderPaidEvent @event)=>
               ReadModelForOrderContext.locker.Lock(()=> 
               {
-                      var existingOrder = ReadModelForOrderContext.Orders.SingleOrDefault(o=>o.Id == @event.OrderId);
-                      existingOrder.OrderStatus = "Paid";
+                   var existingOrder = ReadModelForOrderContext.Orders.SingleOrDefault(o=>o.Id == @event.OrderId);
+                   existingOrder.OrderStatus = "Paid";
               });
 
         [HttpPut]

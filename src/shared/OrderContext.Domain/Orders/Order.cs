@@ -1,8 +1,7 @@
 ﻿using ImGalaxy.ES.Core;
 using OrderContext.Domain.Customers;
 using OrderContext.Domain.Messages.Orders;
-using OrderContext.Domain.Products;
-using OrderContext.Domain.Shared;
+using OrderContext.Domain.Products; 
 
 namespace OrderContext.Domain.Orders
 {

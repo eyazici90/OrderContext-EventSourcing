@@ -18,7 +18,7 @@ namespace OrderContext.Command.API
         
         public void OnException(ExceptionContext context)
         {
-            context.Result = new OkObjectResult(context.Exception.Message);
+            context.Result = new BadRequestObjectResult(context.Exception.Message);
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             context.ExceptionHandled = true;
         }

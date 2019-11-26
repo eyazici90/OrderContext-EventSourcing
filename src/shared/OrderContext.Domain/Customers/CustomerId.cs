@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ImGalaxy.ES.Core;
+using System; 
 
 namespace OrderContext.Domain.Customers
 { 
-    public class CustomerId
+    public class CustomerId : Identity<string>
     {
         public static CustomerId New => new CustomerId(Guid.NewGuid().ToString());
-
-        public readonly string Id;
-        public CustomerId(string id) => Id = id;
-        public override string ToString() => Id;
+        public CustomerId(string id) : base(id)
+        {
+        }
 
         public static implicit operator string(CustomerId self) => self.Id;
 

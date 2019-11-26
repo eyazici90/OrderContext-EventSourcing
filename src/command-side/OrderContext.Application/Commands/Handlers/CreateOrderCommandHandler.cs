@@ -26,9 +26,6 @@ namespace OrderContext.Application.Commands.Handlers
                                            .State,
                                            newId)
                  .PipeToAsync(newId);
-        }
-           
-        
-       
+        } 
     }
 }
