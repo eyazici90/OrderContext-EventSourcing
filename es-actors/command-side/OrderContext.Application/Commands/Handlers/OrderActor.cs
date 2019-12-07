@@ -8,13 +8,11 @@ namespace OrderContext.Application.Commands.Handlers
     public class OrderActor : CommandActor<OrderState>
     {
         private readonly IOrderPolicy _orderPolicy;
-        public OrderActor(IAggregateRootRepository<OrderState> aggregateRootRepository,
-            IUnitOfWork unitOfWork,
+        public OrderActor(IAggregateStore aggregateStore,
             IOrderPolicy orderPolicy)
-            : base(aggregateRootRepository, unitOfWork)
+            : base(aggregateStore) 
         {
             _orderPolicy = orderPolicy;
-
 
             When<CreateOrderCommand>(cmd =>
              {
@@ -26,12 +24,11 @@ namespace OrderContext.Application.Commands.Handlers
                  return (cmd.Id, order);
              });
 
-            When<PayOrderCommand>(cmd=> cmd.OrderNumber, cmd => Order.PayOrder(State));
+            When<PayOrderCommand>(cmd => cmd.OrderNumber, cmd => Order.PayOrder(State));
 
             When<ShipOrderCommand>(cmd => cmd.OrderNumber, cmd => Order.ShipOrder(State, _orderPolicy));
 
-            When<CancelOrderCommand>(cmd => cmd.OrderNumber, cmd => Order.CancelOrder(State)); 
+            When<CancelOrderCommand>(cmd => cmd.OrderNumber, cmd => Order.CancelOrder(State));
         }
-
-    }
+    } 
 }

@@ -37,7 +37,7 @@ namespace OrderContext.Snapshotter.Application
         }
 
         public static ISnapshotter GetSnapshotter<TAggregateRoot, TSnapshot>(IServiceProvider provider)
-             where TAggregateRoot : IAggregateRoot, ISnapshotable
+             where TAggregateRoot : class, IAggregateRootState<TAggregateRoot>, IAggregateRoot, ISnapshotable
         {
             var scope = provider.CreateScope();
             var configurations = scope.ServiceProvider.GetRequiredService<ICosmosDBConfigurations>();

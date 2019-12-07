@@ -18,7 +18,7 @@ namespace OrderContext.Snapshotter.Application
              
         }
         private static async Task HandleSnapshots<TAggregateRoot, TSnapshot>(IServiceProvider provider, EventDocument @event)
-          where TAggregateRoot : IAggregateRoot, ISnapshotable
+          where TAggregateRoot : class, IAggregateRootState<TAggregateRoot>, IAggregateRoot, ISnapshotable
         {
 
             var snapshotter = ImGalaxyESCosmosDBModule.GetSnapshotter<TAggregateRoot, TSnapshot>(provider);

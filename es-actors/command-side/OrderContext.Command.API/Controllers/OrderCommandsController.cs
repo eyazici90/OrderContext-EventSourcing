@@ -13,9 +13,9 @@ namespace OrderContext.Command.API.Controllers
     [ApiController]
     public class OrderCommandsController : ControllerBase
     {
-        private readonly IActorManager _actorManager;
-        public OrderCommandsController(IActorManager actorManager) =>
-            _actorManager = actorManager;
+        private readonly IActorRouter _actorRouter;
+        public OrderCommandsController(IActorRouter actorRouter) =>
+            _actorRouter = actorRouter;
 
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
@@ -49,7 +49,7 @@ namespace OrderContext.Command.API.Controllers
         {
             var actorId = func(command);
 
-            var result = await _actorManager.RequestAsync<object, OrderActor>(actorId, command);
+            var result = await _actorRouter.RequestAsync<object, OrderActor>(actorId, command);
 
             if (result is ExceptionOccuredDuringHandleEvent ex)
                 throw ex.Exception;

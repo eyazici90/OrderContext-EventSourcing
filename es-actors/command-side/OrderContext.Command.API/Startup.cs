@@ -46,13 +46,8 @@ namespace OrderContext.Command.API
                     p.WithReceiveMiddleware(next => ActorMiddleware.Exception(next, nameof(OrderActor))));
             });
 
-            services.AddImGalaxyESProtoActorModule(); 
-
-            ConfigureImGalaxyEs(services);
-
-            services.AddTransient(typeof(IAggregateRootRepository<>), typeof(AggregateRootRepository<>));
-            services.AddTransient<IChangeTracker, ChangeTracker>();
-            services.AddTransient<IUnitOfWork, CosmosDBUnitOfWork>();
+            ConfigureImGalaxyEs(services)
+                .AddImGalaxyESProtoActorModule();
 
             services.AddTransient<IOrderPolicy, OrderPolicy>();
 
@@ -102,8 +97,8 @@ namespace OrderContext.Command.API
                     configs.EventCollectionName = "Events";
                     configs.StreamCollectionName = "Streams";
                     configs.SnapshotCollectionName = "Snapshots";
-                    configs.EndpointUri = "https://localhost:8081";
-                    configs.PrimaryKey = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
+                    configs.EndpointUri = ".";
+                    configs.PrimaryKey = ".";
                     configs.ReadBatchSize = 1000;
                     configs.IsSnapshottingOn = true;
                     configs.OfferThroughput = 10000;

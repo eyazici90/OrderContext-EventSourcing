@@ -18,8 +18,10 @@ namespace OrderContext.Application.Commands
         public readonly string City;
         [DataMember]
         public readonly string Street;
-        public CreateOrderCommand(string id, string buyerId, 
-            string city, string street)
+        public CreateOrderCommand(string id,
+            string buyerId, 
+            string city, 
+            string street)
         {
             Id = id;
             BuyerId = buyerId;
