@@ -97,8 +97,8 @@ namespace OrderContext.Command.API
                     configs.EventCollectionName = "Events";
                     configs.StreamCollectionName = "Streams";
                     configs.SnapshotCollectionName = "Snapshots";
-                    configs.EndpointUri = ".";
-                    configs.PrimaryKey = ".";
+                    configs.EndpointUri = "https://localhost:8081";
+                    configs.PrimaryKey = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
                     configs.ReadBatchSize = 1000;
                     configs.IsSnapshottingOn = true;
                     configs.OfferThroughput = 10000;
