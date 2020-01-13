@@ -1,9 +1,6 @@
 ﻿using ImGalaxy.ES.Core;
 using MediatR;
-using OrderContext.Domain.Orders;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using OrderContext.Domain.Orders; 
 using System.Threading;
 using System.Threading.Tasks;
 

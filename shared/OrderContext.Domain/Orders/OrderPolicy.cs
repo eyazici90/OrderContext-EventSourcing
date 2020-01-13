@@ -1,7 +1,7 @@
 ﻿using ImGalaxy.ES.Core;
 using OrderContext.Domain.Orders;
 
-namespace OrderContext.Application.Infrastructure.Orders
+namespace OrderContext.Domain.Orders
 {
     public class OrderPolicy : IOrderPolicy
     {

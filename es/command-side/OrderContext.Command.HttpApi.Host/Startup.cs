@@ -1,27 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentValidation.AspNetCore;
+﻿using FluentValidation.AspNetCore;
 using ImGalaxy.ES.CosmosDB.Modules;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using OrderContext.Application.Commands.Handlers;
-using OrderContext.Application.Infrastructure.Orders;
+using OrderContext.Application.Commands.Handlers; 
 using OrderContext.Application.Validations;
+using OrderContext.Command.HttpApi.Filters;
 using OrderContext.Domain.Orders;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace OrderContext.Command.API
+namespace OrderContext.Command.HttpApi.Host
 {
     public class Startup
     {
@@ -93,8 +83,8 @@ namespace OrderContext.Command.API
                     configs.EventCollectionName = "Events";
                     configs.StreamCollectionName = "Streams";
                     configs.SnapshotCollectionName = "Snapshots";
-                    configs.EndpointUri = ".";
-                    configs.PrimaryKey = ".";
+                    configs.EndpointUri = "https://localhost:8081";
+                    configs.PrimaryKey = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
                     configs.ReadBatchSize = 1000;
                     configs.IsSnapshottingOn = true;
                     configs.OfferThroughput = 10000;

@@ -10,11 +10,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OrderContext.Application\OrderContext.Application.csproj" />
+    <ProjectReference Include="..\OrderContext.Command.HttpApi\OrderContext.Command.HttpApi.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Threading.Tasks;
-using MediatR;
-using Microsoft.AspNetCore.Http;
+using MediatR; 
 using Microsoft.AspNetCore.Mvc;
 using OrderContext.Application.Commands;
 
-namespace OrderContext.Command.API.Controllers
+namespace OrderContext.Command.HttpApi.Controllers
 {
     [Route("api/v1/Orders")]
     [ApiController]
