@@ -1,12 +1,12 @@
 ﻿using ImGalaxy.ES.Core;
-using OrderContext.Domain.Customers;
-using OrderContext.Domain.Messages.Orders;
+using OrderContext.Domain.Customers; 
 using OrderContext.Domain.Orders.Snapshots;
 using OrderContext.Domain.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static OrderContext.Domain.Messages.Orders.Events;
 
 namespace OrderContext.Domain.Orders
 {

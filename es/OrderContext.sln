@@ -21,11 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Integration.Pu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Snapshotter", "..\shared\OrderContext.Snapshotter\OrderContext.Snapshotter.csproj", "{B0551972-405F-4442-83D4-C46D9985DD30}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Application", "command-side\OrderContext.Application\OrderContext.Application.csproj", "{B1C719FB-8644-4998-9A44-56B40CDA3D55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Application", "src\command-side\OrderContext.Application\OrderContext.Application.csproj", "{B1C719FB-8644-4998-9A44-56B40CDA3D55}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Projections", "query-side\OrderContext.Projections\OrderContext.Projections.csproj", "{04D4C3A2-FE75-4B32-9B8B-C0D6102CEC31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Projections", "src\query-side\OrderContext.Projections\OrderContext.Projections.csproj", "{04D4C3A2-FE75-4B32-9B8B-C0D6102CEC31}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Query.API", "query-side\OrderContext.Query.API\OrderContext.Query.API.csproj", "{B5C8FE6B-B27B-4A16-94B7-F3B5690AF96A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Query.API", "src\query-side\OrderContext.Query.API\OrderContext.Query.API.csproj", "{B5C8FE6B-B27B-4A16-94B7-F3B5690AF96A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Domain", "..\shared\OrderContext.Domain\OrderContext.Domain.csproj", "{ADBE1967-8EAE-4D16-B4F7-9B482271F12F}"
 EndProject
@@ -35,9 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Integration.Ev
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F89A2F1F-C6D1-4B39-9762-02BA4F1D28EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderContext.Command.HttpApi", "command-side\OrderContext.Command.HttpApi\OrderContext.Command.HttpApi.csproj", "{871D346A-11E2-465F-953C-38226A38EDBE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderContext.Command.HttpApi", "src\command-side\OrderContext.Command.HttpApi\OrderContext.Command.HttpApi.csproj", "{871D346A-11E2-465F-953C-38226A38EDBE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Command.HttpApi.Host", "command-side\OrderContext.Command.HttpApi.Host\OrderContext.Command.HttpApi.Host.csproj", "{AC72B20A-58D2-4C33-B832-C28FA50D26CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Command.HttpApi.Host", "src\command-side\OrderContext.Command.HttpApi.Host\OrderContext.Command.HttpApi.Host.csproj", "{AC72B20A-58D2-4C33-B832-C28FA50D26CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

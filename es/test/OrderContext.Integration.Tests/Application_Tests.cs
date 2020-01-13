@@ -1,15 +1,11 @@
-﻿using FluentAssertions;
-using ImGalaxy.ES.TestBase;
-using MediatR;
-using Microsoft.Extensions.DependencyInjection;
-using OrderContext.Application.Commands;
+﻿using FluentAssertions; 
+using MediatR; 
 using OrderContext.Domain.Customers;
 using OrderContext.Domain.Orders;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System; 
 using System.Threading.Tasks;
 using Xunit;
+using static OrderContext.Domain.Messages.Orders.Commands;
 
 namespace OrderContext.Integration.Tests
 {
@@ -31,7 +27,7 @@ namespace OrderContext.Integration.Tests
 
             var command = new CreateOrderCommand(fakeBuyerId, "Amsterdam", "Fake Street-1");
 
-            _fakeOrderId = await _mediatr.Send(command); 
+            _fakeOrderId = new OrderId(await _mediatr.Send(command)); 
         }
 
 

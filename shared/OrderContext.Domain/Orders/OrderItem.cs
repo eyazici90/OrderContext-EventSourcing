@@ -1,8 +1,5 @@
-﻿using OrderContext.Domain.Messages.Orders;
-using OrderContext.Domain.Products;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using OrderContext.Domain.Products; 
+using static OrderContext.Domain.Messages.Orders.Events;
 
 namespace OrderContext.Domain.Orders
 {

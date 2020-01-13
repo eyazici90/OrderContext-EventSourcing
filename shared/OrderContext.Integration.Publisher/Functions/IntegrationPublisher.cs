@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using OrderContext.Domain.Messages.Orders;
 using OrderContext.Integration.Events;
 using OrderContext.Integration.Publisher.Application;
+using static OrderContext.Domain.Messages.Orders.Events;
 
 namespace OrderContext.Integration.Publisher
 {

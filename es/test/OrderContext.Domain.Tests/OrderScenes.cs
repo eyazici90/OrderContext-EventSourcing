@@ -1,11 +1,11 @@
 ﻿using ImGalaxy.ES.TestBase;
 using Moq;
-using OrderContext.Domain.Customers;
-using OrderContext.Domain.Messages.Orders;
+using OrderContext.Domain.Customers; 
 using OrderContext.Domain.Orders;
 using OrderContext.Domain.Products;
 using System;
 using Xunit;
+using static OrderContext.Domain.Messages.Orders.Events;
 
 namespace OrderContext.Domain.Tests
 {
