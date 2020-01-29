@@ -11,7 +11,7 @@ using MediatR;
 using AzureFunctions.Extensions.Swashbuckle.Attribute;
 using static OrderContext.Domain.Messages.Orders.Commands;
 
-namespace OrderContext.Command.HttpApi.HostV2
+namespace OrderContext.Command.Function.Host
 {
     public class OrderCommandFunctions : CommandFunctionBase
     {

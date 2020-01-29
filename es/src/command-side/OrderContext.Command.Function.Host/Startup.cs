@@ -5,13 +5,13 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using OrderContext.Application.Commands.Handlers;
-using OrderContext.Command.HttpApi.HostV2;
+using OrderContext.Command.Function.Host;
 using OrderContext.Domain.Orders;
 using System.Reflection; 
 
 [assembly: WebJobsStartup(typeof(Startup))]
 
-namespace OrderContext.Command.HttpApi.HostV2
+namespace OrderContext.Command.Function.Host
 {
     public class Startup : IWebJobsStartup
     {

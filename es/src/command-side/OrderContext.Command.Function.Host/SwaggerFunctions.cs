@@ -5,7 +5,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using System.Net.Http; 
 using System.Threading.Tasks;
 
-namespace OrderContext.Command.HttpApi.HostV2
+namespace OrderContext.Command.Function.Host
 {
     public static class SwaggerFunctions
     {
