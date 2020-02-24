@@ -61,10 +61,10 @@ namespace OrderContext.Command.HttpApi.Host
                  c.SwaggerEndpoint("/swagger/v1/swagger.json", "Order Command API V1");
              });
 
-            //app.ApplicationServices
-            //    .UseGalaxyESCosmosDBModule()
-            //    .ConfigureAwait(false)
-            //    .GetAwaiter().GetResult();
+            app.ApplicationServices
+                .UseGalaxyESCosmosDBModule()
+                .ConfigureAwait(false)
+                .GetAwaiter().GetResult();
 
             app.UseMvc(routes =>
             {

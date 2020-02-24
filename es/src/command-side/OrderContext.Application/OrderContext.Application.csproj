@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="8.4.0" />
-    <PackageReference Include="ImGalaxy.ES.CosmosDB" Version="1.7.1" />
+    <PackageReference Include="ImGalaxy.ES.CosmosDB" Version="1.7.2" />
   </ItemGroup>
 
   <ItemGroup>

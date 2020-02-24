@@ -100,7 +100,7 @@ namespace OrderContext.Domain.Orders
                 OrderDate = this._orderDate,
                 Street = this._address.Street,
                 OrderStatus = this.OrderStatus.Name,
-                OrderItems = this._orderItems.Select(item => item.TakeSnapshot() as OrderItemStateSnapshot)
+                OrderItems = this._orderItems?.Select(item => item.TakeSnapshot() as OrderItemStateSnapshot)
             };
     }
 }

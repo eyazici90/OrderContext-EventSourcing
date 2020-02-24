@@ -1,12 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json; 
+using OrderContext.Projections.Functions.Extensions;
 
 namespace OrderContext.Projections
 {
@@ -27,7 +24,7 @@ namespace OrderContext.Projections
         {
             foreach (var @event in input)
             {
-                switch (CastEventToDynamic(@event))
+                switch (@event.ToDynamic())
                 {
                     case Domain.Messages.Orders.Events.OrderStartedEvent e:
                         await SendOrderStarted(e);
@@ -45,7 +42,7 @@ namespace OrderContext.Projections
             }
         }
 
-        private async Task SendOrderStarted(Domain.Messages.Orders.Events.OrderStartedEvent @event)=>
+        private async Task SendOrderStarted(Domain.Messages.Orders.Events.OrderStartedEvent @event) =>
             await _client.WhenAsync(new OrderStartedEvent
             {
                 BuyerId = @event.BuyerId,
@@ -53,38 +50,24 @@ namespace OrderContext.Projections
                 OrderId = @event.OrderId,
                 Street = @event.Street
             });
-        
 
-        private async Task SendOrderPaid(Domain.Messages.Orders.Events.OrderPaidEvent @event)=>
+        private async Task SendOrderPaid(Domain.Messages.Orders.Events.OrderPaidEvent @event) =>
             await _client.WhenAsync(new OrderPaidEvent
             {
                 OrderId = @event.OrderId
-            }); 
-        
+            });
 
-        private async Task SendOrderShipped(Domain.Messages.Orders.Events.OrderShippedEvent @event)=> 
+        private async Task SendOrderShipped(Domain.Messages.Orders.Events.OrderShippedEvent @event) =>
             await _client.WhenAsync(new OrderShippedEvent
             {
                 OrderId = @event.OrderId
             });
-        
-        private async Task SendOrderCancelled(Domain.Messages.Orders.Events.OrderCancelledEvent @event)=>
+
+        private async Task SendOrderCancelled(Domain.Messages.Orders.Events.OrderCancelledEvent @event) =>
             await _client.WhenAsync(new OrderCancelledEvent
             {
                 OrderId = @event.OrderId
             });
-        
-         
-        private dynamic CastEventToDynamic(Document @event)
-        {
-            var eData = ((dynamic)@event).Data;
-            var eType = ((dynamic)@event).Type;
 
-            var type = Convert.ToString(eType);
-
-            var castedEvent = JsonConvert.DeserializeObject(eData, Type.GetType(type));
-
-            return castedEvent;
-        }
     }
 }
