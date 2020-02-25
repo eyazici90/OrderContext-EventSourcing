@@ -17,7 +17,7 @@ namespace OrderContext.Command.HttpApi.Controllers
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task CreateOrder([FromBody]CreateOrderCommand command) =>
+        public async Task<string> CreateOrder([FromBody]CreateOrderCommand command) =>
            await _mediatr.Send(command);
 
         [Route("cancel")]
