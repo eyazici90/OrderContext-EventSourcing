@@ -8,7 +8,8 @@ using Xunit;
 
 namespace OrderContext.Application.Tests.Commands.CancelOrderCommand
 { 
-    public class CancelOrderCommandHandler_Tests : OrderContextIntegrationTestBase, IClassFixture<SeedDataFixture>
+    public class CancelOrderCommandHandler_Tests : OrderContextIntegrationTestBase,
+        IClassFixture<SeedDataFixture>
     {
         private readonly SeedDataFixture _seedDataFixture;
         public CancelOrderCommandHandler_Tests(SeedDataFixture seedDataFixture) =>

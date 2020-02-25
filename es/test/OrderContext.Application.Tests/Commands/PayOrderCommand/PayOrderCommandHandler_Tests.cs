@@ -8,7 +8,8 @@ using Xunit;
 
 namespace OrderContext.Application.Tests.Commands.PayOrderCommand
 {
-    public class PayOrderCommandHandler_Tests : OrderContextIntegrationTestBase, IClassFixture<SeedDataFixture>
+    public class PayOrderCommandHandler_Tests : OrderContextIntegrationTestBase,
+        IClassFixture<SeedDataFixture>
     {
         private readonly SeedDataFixture _seedDataFixture;
         public PayOrderCommandHandler_Tests(SeedDataFixture seedDataFixture) =>

@@ -10,9 +10,7 @@ namespace OrderContext.Application.Tests
     {
         public IAggregateRootRepository<OrderState> RootRepository { get; }
         public IUnitOfWork UnitOfWork { get; }
-        public OrderId FakeOrderId { get; }
-
-        public int FakeMaxStudentNumber { get; }
+        public OrderId FakeOrderId { get; } 
         public SeedDataFixture()
         {
             FakeOrderId = OrderId.New; 
