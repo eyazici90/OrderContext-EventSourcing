@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{5944FD
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backgroud-functions", "backgroud-functions", "{059A5AB6-079D-4C4D-B915-2A2EABA86AAF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E87FA516-8ED7-48F8-8CB9-22ECBCF19B6F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E87FA516-8ED7-48F8-8CB9-22ECBCF19B6F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Domain.Tests", "test\OrderContext.Domain.Tests\OrderContext.Domain.Tests.csproj", "{B6A934D9-DCC4-4655-8CAC-92B7A69EF244}"
 EndProject
