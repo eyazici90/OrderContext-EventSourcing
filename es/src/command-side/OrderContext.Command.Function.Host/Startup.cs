@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using OrderContext.Application.Commands.Handlers;
 using OrderContext.Command.Function.Host;
 using OrderContext.Domain.Orders;
-using System.Reflection; 
+using System.Reflection;
 
 [assembly: WebJobsStartup(typeof(Startup))]
 
@@ -22,13 +22,14 @@ namespace OrderContext.Command.Function.Host
             ConfigureServices(builder.Services);
         }
 
-        private void ConfigureServices(IServiceCollection services) 
+        private void ConfigureServices(IServiceCollection services)
         {
             services.AddMediatR(typeof(CreateOrderCommandHandler).Assembly);
 
-            services.AddTransient<IOrderPolicy, OrderPolicy>();
+            services.AddTransient<IOrderPolicy, OrderPolicy>(); 
 
             ConfigureImGalaxyEs(services);
+             
         }
 
 
@@ -43,7 +44,7 @@ namespace OrderContext.Command.Function.Host
                     configs.EndpointUri = "https://localhost:8081";
                     configs.PrimaryKey = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
                     configs.ReadBatchSize = 1000;
-                    configs.IsSnapshottingOn = true; 
+                    configs.IsSnapshottingOn = true;
                 });
     }
 }

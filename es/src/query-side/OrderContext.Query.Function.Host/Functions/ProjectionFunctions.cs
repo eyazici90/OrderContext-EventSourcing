@@ -15,11 +15,11 @@ namespace OrderContext.Projections
         public ProjectionFunctions(IProjector projector) =>
             _projector = projector;
 
-        [FunctionName("ProjectionHandler")]
+        [FunctionName("ProjectionFunctions")]
         public async Task Run([CosmosDBTrigger(
             databaseName: "OrderContextES",
             collectionName: "Events",
-            ConnectionStringSetting = "ConStr",
+            ConnectionStringSetting = "ConnString",
             LeaseDatabaseName = SettingConsts.DATABASE,
             LeaseCollectionName = "leases-projection",
             StartFromBeginning = true,

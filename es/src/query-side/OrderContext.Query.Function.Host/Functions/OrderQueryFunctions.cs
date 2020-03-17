@@ -18,7 +18,7 @@ namespace OrderContext.Query.Function.Host.Functions
         [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(Order))]
         [FunctionName("GetOrderById")]
         public async Task<IActionResult> GetOrderById(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "v1/Measurements/{id}")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "v1/Orders/{id}")] HttpRequest req,
             string id,
             [SwaggerIgnore]
           [CosmosDB( databaseName: SettingConsts.DATABASE, collectionName: SettingConsts.ORDER_COLLECTION,
