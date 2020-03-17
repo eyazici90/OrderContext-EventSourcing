@@ -38,7 +38,7 @@ namespace OrderContext.Domain.Messages.Orders
         public class PayOrderCommand : IRequest
         {
             [DataMember]
-            public readonly string OrderNumber;
+            public readonly string OrderNumber; 
 
             public PayOrderCommand(string orderNumber)
             {

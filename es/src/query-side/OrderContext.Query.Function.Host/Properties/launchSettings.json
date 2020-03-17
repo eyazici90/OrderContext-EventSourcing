@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "OrderContext.Query.Function.Host": {
+      "commandName": "Project",
+      "commandLineArgs": "host start --pause-on-error"
+    }
+  }
+}

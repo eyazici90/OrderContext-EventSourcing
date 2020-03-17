@@ -1,8 +1,10 @@
 ﻿using Microsoft.Azure.Documents;
 using Newtonsoft.Json;
-using System; 
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace OrderContext.Projections.Functions.Extensions
+namespace OrderContext.Query.Function.Host.Extensions
 {
     public static class DocumentExtensions
     {
@@ -16,6 +18,15 @@ namespace OrderContext.Projections.Functions.Extensions
             var castedEvent = JsonConvert.DeserializeObject(value: eData, type: Type.GetType(type));
 
             return castedEvent;
+        }
+
+        public static async Task ForEachAsync<T>(this IEnumerable<T> docList,
+            Func<T, Task> func)
+        {
+            foreach (var doc in docList)
+            {
+                await func(doc);
+            }
         }
     }
 }
