@@ -22,8 +22,7 @@ namespace OrderContext.Application.Tests.Commands.CancelOrderCommand
         {
             var command = new Domain.Messages.Orders.Commands.CancelOrderCommand(_seedDataFixture.FakeOrderId);
 
-            var result = await new CancelOrderCommandHandler(_seedDataFixture.UnitOfWork,
-                _seedDataFixture.RootRepository)
+            var result = await new CancelOrderCommandHandler(_seedDataFixture.AggregateStore)
                 .Handle(command, CancellationToken.None);
 
             result.Should().Be(Unit.Value);

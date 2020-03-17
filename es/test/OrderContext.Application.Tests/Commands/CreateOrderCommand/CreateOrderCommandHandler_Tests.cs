@@ -13,25 +13,22 @@ using Xunit;
 
 namespace OrderContext.Application.Tests.Commands.CreateOrderCommand
 {
-    public class CreateCourseCommandHandler_Tests : OrderContextIntegrationTestBase
+    public class CreateOrderCommandHandler_Tests : OrderContextIntegrationTestBase
     {
-        private readonly IAggregateRootRepository<OrderState> _rootRepository;
-        private readonly IUnitOfWork _unitOfWork;
-        public CreateCourseCommandHandler_Tests()
+        private readonly IAggregateStore _aggregateStore;
+        public CreateOrderCommandHandler_Tests()
         {
-            _rootRepository = The<IAggregateRootRepository<OrderState>>();
-            _unitOfWork = The<IUnitOfWork>();
+            _aggregateStore = The<IAggregateStore>();
         }
 
-        [Fact]
-
+        [Fact] 
         public async Task Create_order_command_with_valid_command_should_success()
         {
             var fakeBuyerId = CustomerId.New;
 
             var command = new Domain.Messages.Orders.Commands.CreateOrderCommand(fakeBuyerId, "Amsterdam", "Fake 12312");
 
-            var result = await new CreateOrderCommandHandler(_unitOfWork, _rootRepository)
+            var result = await new CreateOrderCommandHandler(_aggregateStore)
                 .Handle(command, CancellationToken.None);
 
             result.Should().NotBeNullOrEmpty();

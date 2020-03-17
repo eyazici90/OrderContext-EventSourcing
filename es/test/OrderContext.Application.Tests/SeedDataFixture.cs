@@ -2,7 +2,7 @@
 using OrderContext.Domain.Customers;
 using OrderContext.Domain.Orders;
 using OrderContext.Integration.Tests;
-using System; 
+using System;
 
 namespace OrderContext.Application.Tests
 {
@@ -10,13 +10,15 @@ namespace OrderContext.Application.Tests
     {
         public IAggregateRootRepository<OrderState> RootRepository { get; }
         public IUnitOfWork UnitOfWork { get; }
-        public OrderId FakeOrderId { get; } 
+        public IAggregateStore AggregateStore { get; }
+        public OrderId FakeOrderId { get; }
         public SeedDataFixture()
         {
-            FakeOrderId = OrderId.New; 
+            FakeOrderId = OrderId.New;
 
             RootRepository = The<IAggregateRootRepository<OrderState>>();
             UnitOfWork = The<IUnitOfWork>();
+            AggregateStore = The<IAggregateStore>();
 
             SeedOrder();
         }

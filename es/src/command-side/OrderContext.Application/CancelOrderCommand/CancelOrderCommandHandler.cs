@@ -7,12 +7,11 @@ using static OrderContext.Domain.Messages.Orders.Commands;
 
 namespace OrderContext.Application.Commands.Handlers
 {
-    public class CancelOrderCommandHandler : CommandHandlerBase<OrderState, OrderId>,
+    public class CancelOrderCommandHandler : AggregateCommandHandlerBase<OrderState, OrderId>,
         IRequestHandler<CancelOrderCommand>
     {
-        public CancelOrderCommandHandler(IUnitOfWork unitOfWork,
-            IAggregateRootRepository<OrderState> rootRepository) 
-            : base(unitOfWork, rootRepository)
+        public CancelOrderCommandHandler(IAggregateStore aggregateStore) 
+            : base(aggregateStore)
         {
         }
 
