@@ -9,7 +9,7 @@ using static OrderContext.Domain.Messages.Orders.Events;
 
 namespace OrderContext.Domain.Tests
 {
-    public class OrderScenes
+    public class OrderSpecs
     {
         [Fact]
         public void creating_new_order_with_valid_state_should_create_order_success()
