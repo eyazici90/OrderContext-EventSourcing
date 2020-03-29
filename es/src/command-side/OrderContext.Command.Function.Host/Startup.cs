@@ -1,5 +1,4 @@
-﻿using AzureFunctions.Extensions.Swashbuckle;
-using ImGalaxy.ES.CosmosDB.Modules;
+﻿using ImGalaxy.ES.CosmosDB.Modules;
 using MediatR;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Hosting;
@@ -7,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using OrderContext.Application.Commands.Handlers;
 using OrderContext.Command.Function.Host;
 using OrderContext.Domain.Orders;
-using System.Reflection;
 
 [assembly: WebJobsStartup(typeof(Startup))]
 
@@ -16,8 +14,7 @@ namespace OrderContext.Command.Function.Host
     public class Startup : IWebJobsStartup
     {
         public void Configure(IWebJobsBuilder builder)
-        {
-            builder.AddSwashBuckle(Assembly.GetExecutingAssembly());
+        { 
 
             ConfigureServices(builder.Services);
         }

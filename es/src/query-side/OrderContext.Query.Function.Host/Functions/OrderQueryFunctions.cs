@@ -1,14 +1,10 @@
-﻿using AzureFunctions.Extensions.Swashbuckle.Attribute;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc; 
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using OrderContext.Query.Function.Host.Model;
-using System;
+using OrderContext.Query.Function.Host.Model; 
 using System.Collections.Generic;
-using System.Net;
-using System.Text;
+using System.Net; 
 using System.Threading.Tasks;
 
 namespace OrderContext.Query.Function.Host.Functions
@@ -19,9 +15,8 @@ namespace OrderContext.Query.Function.Host.Functions
         [FunctionName("GetOrderById")]
         public async Task<IActionResult> GetOrderById(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "v1/Orders/{id}")] HttpRequest req,
-            string id,
-            [SwaggerIgnore]
-          [CosmosDB( databaseName: SettingConsts.DATABASE, collectionName: SettingConsts.ORDER_COLLECTION,
+            string id, 
+            [CosmosDB( databaseName: SettingConsts.DATABASE, collectionName: SettingConsts.ORDER_COLLECTION,
                 ConnectionStringSetting = "ConnString",
                 Id = "{id}")
             ]Order state) =>
@@ -32,7 +27,6 @@ namespace OrderContext.Query.Function.Host.Functions
         [FunctionName("GetOrders")]
         public async Task<IActionResult> GetOrders(
           [HttpTrigger(AuthorizationLevel.Function, "get", Route = "v1/Orders")] HttpRequest req,
-          [SwaggerIgnore]
           [CosmosDB( databaseName: SettingConsts.DATABASE, collectionName: SettingConsts.ORDER_COLLECTION,
                 ConnectionStringSetting = "ConnString",
                 SqlQuery = "SELECT * FROM Order")

@@ -12,7 +12,7 @@ using Xunit;
 
 namespace OrderContext.Integration.Tests
 {
-    public class Repository_Tests : ImGalaxyIntegrationTestBase
+    public class Repository_Tests : ImGalaxyIntegratedTestBase
     {
         protected override IServiceCollection ConfigureServices(IServiceCollection services) =>
             OrderContextIntegrationConfigurator.Configure(services);
@@ -22,7 +22,7 @@ namespace OrderContext.Integration.Tests
         private readonly IAggregateRootRepository<OrderState> _aggregateRootRepository;
         public Repository_Tests()
         {
-            _aggregateRootRepository = GetRequiredService<IAggregateRootRepository<OrderState>>();
+            _aggregateRootRepository = The<IAggregateRootRepository<OrderState>>();
 
             SeedOrder().ConfigureAwait(false)
                 .GetAwaiter().GetResult();

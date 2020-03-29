@@ -6,7 +6,7 @@ using System;
 
 namespace OrderContext.Application.Tests
 {
-    public class SeedDataFixture : OrderContextIntegrationTestBase
+    public class SeedDataFixture : OrderContextIntegratedTestBase
     {
         public IAggregateRootRepository<OrderState> RootRepository { get; }
         public IUnitOfWork UnitOfWork { get; }

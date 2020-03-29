@@ -1,7 +1,5 @@
-﻿using AzureFunctions.Extensions.Swashbuckle;
-using ImGalaxy.ES.Projector;
+﻿using ImGalaxy.ES.Projector;
 using ImGalaxy.ES.Projector.CosmosDB.Modules;
-using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,8 +7,7 @@ using OrderContext.Query.Function.Host;
 using OrderContext.Query.Function.Host.Model;
 using OrderContext.Query.Function.Host.Projections;
 using System;
-using System.Reflection;
- 
+
 [assembly: WebJobsStartup(typeof(OrderContext.Projections.Startup))]
 
 namespace OrderContext.Projections
@@ -18,9 +15,7 @@ namespace OrderContext.Projections
     public class Startup : IWebJobsStartup
     {
         public void Configure(IWebJobsBuilder builder) 
-        {
-            builder.AddSwashBuckle(Assembly.GetExecutingAssembly());
-
+        { 
             ConfigureServices(builder.Services);
         }
           
