@@ -6,11 +6,11 @@ using System;
 
 namespace OrderContext.Application.Tests
 {
-    public class SeedDataFixture : OrderContextIntegratedTestBase
+    public class SeedDataFixture : Given_in_memory_aggregate_store
     {
         public IAggregateRootRepository<OrderState> RootRepository { get; }
         public IUnitOfWork UnitOfWork { get; }
-        public IAggregateStore AggregateStore { get; }
+        public new IAggregateStore AggregateStore { get; }
         public OrderId FakeOrderId { get; }
         public SeedDataFixture()
         {
