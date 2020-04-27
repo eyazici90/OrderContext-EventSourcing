@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Application", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Integration.Publisher", "..\shared\OrderContext.Integration.Publisher\OrderContext.Integration.Publisher.csproj", "{CDACB193-D023-4EE2-A39E-1BF5AEB604BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderContext.Command.HttpApi", "command-side\OrderContext.Command.HttpApi\OrderContext.Command.HttpApi.csproj", "{943E4263-529D-4551-8F2A-5E56AE719B8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Command.HttpApi", "command-side\OrderContext.Command.HttpApi\OrderContext.Command.HttpApi.csproj", "{943E4263-529D-4551-8F2A-5E56AE719B8F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Command.HttpApi.Host", "command-side\OrderContext.Command.HttpApi.Host\OrderContext.Command.HttpApi.Host.csproj", "{B371B5E2-7F5B-43FF-9C25-B51027F7F427}"
 EndProject

@@ -8,8 +8,9 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection; 
-using OrderContext.Application.Commands.Handlers; 
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
+using OrderContext.Application.Commands.Handlers;
 using OrderContext.Application.Validations;
 using OrderContext.Command.HttpApi.Filters;
 using OrderContext.Domain.Orders;
@@ -30,10 +31,11 @@ namespace OrderContext.Command.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "Order Command API", Version = "v1" });
-            });
+            services
+                .AddSwaggerGen(c =>
+                {
+                    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Order Command API", Version = "v1" });
+                }).AddSwaggerGenNewtonsoftSupport();
 
             services.AddOptions();
 
@@ -48,24 +50,30 @@ namespace OrderContext.Command.API
             ConfigureImGalaxyEs(services)
                 .AddImGalaxyESProtoActorModule();
 
-            services.AddTransient<IOrderPolicy, OrderPolicy>();
+            services.AddTransient<IOrderPolicy, OrderPolicy>(); 
 
-            services.AddMvc(options =>
-            {
-                options.Filters.Add(typeof(HttpGlobalExceptionFilter));
-            })
-            .AddFluentValidation(fv =>
-            {
-                fv.RegisterValidatorsFromAssemblyContaining<CreateOrderCommandValidator>();
-                fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
-            });
+            services
+                .AddControllers(opt => opt.Filters.Add(typeof(HttpGlobalExceptionFilter)))
+                .AddNewtonsoftJson()
+                .AddFluentValidation(fv =>
+                {
+                    fv.RegisterValidatorsFromAssemblyContaining<CreateOrderCommandValidator>();
+                    fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+                });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
+            app.UseRouting();
+
             app.UseCors(builder =>
             {
                 builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            });
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
             });
 
             app.UseSwagger()
@@ -73,19 +81,6 @@ namespace OrderContext.Command.API
              {
                  c.SwaggerEndpoint("/swagger/v1/swagger.json", "Order Command API V1");
              });
-
-            app.ApplicationServices
-                .UseGalaxyESCosmosDBModule()
-                .ConfigureAwait(false)
-                .GetAwaiter().GetResult();
-
-            app.UseMvc(routes =>
-            {
-
-                routes.MapRoute(
-                    name: "default",
-                    template: "api/{controller}/{action}/{id?}");
-            });
         }
 
         private IServiceCollection ConfigureImGalaxyEs(IServiceCollection services) =>
