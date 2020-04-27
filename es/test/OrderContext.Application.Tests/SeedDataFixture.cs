@@ -1,7 +1,6 @@
 ﻿using ImGalaxy.ES.Core;
 using OrderContext.Domain.Customers;
-using OrderContext.Domain.Orders;
-using OrderContext.Integration.Tests;
+using OrderContext.Domain.Orders; 
 using System;
 
 namespace OrderContext.Application.Tests
