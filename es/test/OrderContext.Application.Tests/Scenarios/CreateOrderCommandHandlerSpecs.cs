@@ -3,6 +3,8 @@ using ImGalaxy.ES.Core;
 using OrderContext.Application.Commands.Handlers;
 using OrderContext.Domain.Customers;
 using OrderContext.Domain.Orders;
+using OrderContext.Domain.Shared;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -11,7 +13,7 @@ namespace OrderContext.Application.Tests.Commands.CreateOrderCommand
 {
     public class When_order_is_created : Given_in_memory_aggregate_store
     {
-        private CustomerId _fakeBuyerId = CustomerId.New;
+        private CustomerId _fakeBuyerId = CustomerId.New; 
         private string _fakeOrderId;
         public When_order_is_created()
         {
@@ -19,7 +21,7 @@ namespace OrderContext.Application.Tests.Commands.CreateOrderCommand
 
             When(async () =>
             {
-                _fakeOrderId = await new CreateOrderCommandHandler(AggregateStore).Handle(command, CancellationToken.None);
+                _fakeOrderId = await new CreateOrderCommandHandler(AggregateStore, SystemClock.Now).Handle(command, CancellationToken.None);
             });
         }
 
@@ -39,7 +41,7 @@ namespace OrderContext.Application.Tests.Commands.CreateOrderCommand
 
             (aggregate.Root as OrderState).OrderStatus.Should().Be(OrderStatus.Submitted);
 
-        }
+        } 
 
     }
 

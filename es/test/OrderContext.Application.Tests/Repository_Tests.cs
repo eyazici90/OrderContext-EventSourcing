@@ -4,6 +4,7 @@ using ImGalaxy.ES.TestBase;
 using Microsoft.Extensions.DependencyInjection;
 using OrderContext.Domain.Customers;
 using OrderContext.Domain.Orders;
+using OrderContext.Domain.Shared;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -30,7 +31,7 @@ namespace OrderContext.Integration.Tests
 
         private async Task SeedOrder()
         {
-            var fakeOrder = Order.Create(FAKE_ORDER_ID, CustomerId.New, "Amsterdam", "FakeStreet");
+            var fakeOrder = Order.Create(FAKE_ORDER_ID, CustomerId.New, "Amsterdam", "FakeStreet", () => DateTime.UtcNow);
 
             await WithUnitOfWorkAsync(async () =>
             {
@@ -41,10 +42,10 @@ namespace OrderContext.Integration.Tests
 
         [Fact]
         public async Task create_should_success()
-        { 
+        {
             var result = await WithUnitOfWorkAsync(async () =>
             {
-                var fakeOrder = Order.Create(OrderId.New, CustomerId.New, "Amsterdam", "FakeStreet");
+                var fakeOrder = Order.Create(OrderId.New, CustomerId.New, "Amsterdam", "FakeStreet", SystemClock.Now);
             });
 
             result.IsSuccess.Should().BeTrue();
@@ -61,7 +62,7 @@ namespace OrderContext.Integration.Tests
         [Fact]
         public async Task update_existing_record_should_update_record_success()
         {
-            var existingOrder = await _aggregateRootRepository.GetAsync(FAKE_ORDER_ID); 
+            var existingOrder = await _aggregateRootRepository.GetAsync(FAKE_ORDER_ID);
 
             var result = await WithUnitOfWorkAsync(async () =>
             {

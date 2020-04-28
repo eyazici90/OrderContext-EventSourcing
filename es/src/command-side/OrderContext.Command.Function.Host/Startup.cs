@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using OrderContext.Application.Commands.Handlers;
 using OrderContext.Command.Function.Host;
 using OrderContext.Domain.Orders;
+using OrderContext.Domain.Shared;
 
 [assembly: WebJobsStartup(typeof(Startup))]
 
@@ -14,7 +15,7 @@ namespace OrderContext.Command.Function.Host
     public class Startup : IWebJobsStartup
     {
         public void Configure(IWebJobsBuilder builder)
-        { 
+        {
 
             ConfigureServices(builder.Services);
         }
@@ -23,10 +24,12 @@ namespace OrderContext.Command.Function.Host
         {
             services.AddMediatR(typeof(CreateOrderCommandHandler).Assembly);
 
-            services.AddTransient<IOrderPolicy, OrderPolicy>(); 
+            services.AddTransient<IOrderPolicy, OrderPolicy>();
+
+            services.AddSingleton(_ => SystemClock.Now);
 
             ConfigureImGalaxyEs(services);
-             
+
         }
 
 

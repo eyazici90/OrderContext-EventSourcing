@@ -1,8 +1,9 @@
-﻿    using ImGalaxy.ES.TestBase;
+﻿using ImGalaxy.ES.TestBase;
 using Moq;
-using OrderContext.Domain.Customers; 
+using OrderContext.Domain.Customers;
 using OrderContext.Domain.Orders;
 using OrderContext.Domain.Products;
+using OrderContext.Domain.Shared;
 using System;
 using Xunit;
 using static OrderContext.Domain.Messages.Orders.Events;
@@ -18,13 +19,14 @@ namespace OrderContext.Domain.Tests
             var fakeBuyerId = CustomerId.New;
             var fakeCity = "Amsterdam";
             var fakeStreet = "Fake Street";
+            DateTime now = SystemClock.Now();
 
-            var newOrder = Order.Create(fakeOrderId, fakeBuyerId, fakeCity, fakeStreet);
+            var newOrder = Order.Create(fakeOrderId, fakeBuyerId, fakeCity, fakeStreet, () => now);
 
             CommandScenarioFor<OrderState>.With
                 (newOrder.State)
                 .WhenNone()
-                .Then(new OrderStartedEvent(fakeOrderId, fakeBuyerId, fakeCity, fakeStreet))
+                .Then(new OrderStartedEvent(fakeOrderId, fakeBuyerId, fakeCity, fakeStreet, now))
                 .Assert();
 
         }
@@ -98,7 +100,7 @@ namespace OrderContext.Domain.Tests
         {
             get
             {
-                var order = Order.Create(OrderId.New, CustomerId.New, "Amsterdam", "Fake Street").State;
+                var order = Order.Create(OrderId.New, CustomerId.New, "Amsterdam", "Fake Street", SystemClock.Now).State;
                 order.ClearEvents();
                 return order;
             }

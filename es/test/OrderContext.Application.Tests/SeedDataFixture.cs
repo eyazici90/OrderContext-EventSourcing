@@ -1,6 +1,7 @@
 ﻿using ImGalaxy.ES.Core;
 using OrderContext.Domain.Customers;
-using OrderContext.Domain.Orders; 
+using OrderContext.Domain.Orders;
+using OrderContext.Domain.Shared;
 using System;
 
 namespace OrderContext.Application.Tests
@@ -25,7 +26,7 @@ namespace OrderContext.Application.Tests
         private void SeedOrder()
         {
             var newCourse = Order.Create(FakeOrderId, new CustomerId(Guid.NewGuid().ToString()),
-                "Amsterdam", "Fake-1");
+                "Amsterdam", "Fake-1", SystemClock.Now);
 
             RootRepository.AddAsync(newCourse.State, FakeOrderId)
                 .GetAwaiter().GetResult();
