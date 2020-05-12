@@ -47,7 +47,7 @@ namespace OrderContext.Domain.Orders
                state._buyerId = new CustomerId(@event.BuyerId);
                state._address = Address.Create(@event.Street, @event.City, string.Empty, string.Empty, string.Empty);
                state.OrderStatus = OrderStatus.Submitted;
-               state._orderDate = DateTime.Now;
+               state._orderDate = @event.StartedDate;
            });
 
         private void When(OrderCancelledEvent @event) =>

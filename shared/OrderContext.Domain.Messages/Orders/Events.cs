@@ -57,13 +57,16 @@ namespace OrderContext.Domain.Messages.Orders
             public string BuyerId { get; }
             public string City { get; }
             public string Street { get; }
+            public DateTime StartedDate { get; }
             public OrderStartedEvent(string orderId, string buyerId,
-                string city, string street)
+                string city, string street,
+                DateTime startedDate)
             {
                 OrderId = orderId;
                 BuyerId = buyerId;
                 City = city;
                 Street = street;
+                StartedDate = startedDate;
             }
         }
     }
