@@ -1,6 +1,5 @@
 ﻿using ImGalaxy.ES.Core;
-using ImGalaxy.ES.CosmosDB;
-using ImGalaxy.ES.CosmosDB.Modules;
+using ImGalaxy.ES.CosmosDB; 
 using MediatR;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;

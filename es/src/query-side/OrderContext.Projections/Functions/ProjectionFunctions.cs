@@ -3,9 +3,8 @@ using System.Threading.Tasks;
 using ImGalaxy.ES.Projector;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.WebJobs;
-using OrderContext.Query.Function.Host;
-using OrderContext.Query.Function.Host.Extensions;
-using OrderContext.Query.Function.Host.Model;
+using OrderContext.Projections.Extensions;  
+using OrderContext.Query.Shared;
 
 namespace OrderContext.Projections
 {
@@ -23,12 +22,12 @@ namespace OrderContext.Projections
             LeaseDatabaseName = SettingConsts.DATABASE,
             LeaseCollectionName = "leases-projection",
             StartFromBeginning = true,
-            CreateLeaseCollectionIfNotExists = true)]IReadOnlyList<Document> input) =>
-               await input.ForEachAsync(async doc =>
-               {
-                   var @event = doc.ToDynamic();
-                   await _projector.ProjectAsync<Order>(((dynamic)doc).StreamId, @event);
-               });
+            CreateLeaseCollectionIfNotExists = true)]IReadOnlyList<Document> changes) =>
+                await changes.ForEachAsync(async change =>
+                {
+                    var @event = (object)change.DeserializeToEvent();
+                    await _projector.ProjectAsync(@event).ConfigureAwait(false);
+                });
 
     }
 }

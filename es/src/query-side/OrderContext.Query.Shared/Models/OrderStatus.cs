@@ -1,5 +1,5 @@
-﻿ 
-namespace OrderContext.Query.Function.Host.Model
+﻿
+namespace OrderContext.Query.Shared.Models
 {
     public enum OrderStatus
     {

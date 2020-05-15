@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System; 
 
-namespace OrderContext.Query.Function.Host.Model
+namespace OrderContext.Query.Shared.Models
 {
     public class Order
     {

@@ -1,5 +1,4 @@
-﻿using ImGalaxy.ES.CosmosDB.Modules;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Hosting;
 using Microsoft.Extensions.DependencyInjection;

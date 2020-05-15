@@ -1,14 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AzureFunctionsVersion>v3</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="ImGalaxy.ES.Projector" Version="2.2.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.7" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\OrderContext.Application\OrderContext.Application.csproj" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.8.0" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.7" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
@@ -18,5 +17,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\shared\OrderContext.Domain.Messages\OrderContext.Domain.Messages.csproj" />
+    <ProjectReference Include="..\OrderContext.Query.Shared\OrderContext.Query.Shared.csproj" />
   </ItemGroup>
 </Project>
