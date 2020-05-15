@@ -1,12 +1,7 @@
-﻿using FluentValidation.AspNetCore;
-using ImGalaxy.ES.Core;
-using ImGalaxy.ES.CosmosDB;
-using ImGalaxy.ES.CosmosDB.Modules;
-using ImGalaxy.ES.ProtoActor;
-using ImGalaxy.ES.ProtoActor.Modules;
+﻿using FluentValidation.AspNetCore; 
+using ImGalaxy.ES.ProtoActor; 
 using MediatR;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Builder; 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -14,8 +9,8 @@ using OrderContext.Application.Commands.Handlers;
 using OrderContext.Application.Validations;
 using OrderContext.Command.HttpApi.Filters;
 using OrderContext.Domain.Orders;
-using Proto;
-using Swashbuckle.AspNetCore.Swagger;
+using OrderContext.Domain.Shared;
+using Proto; 
 using static OrderContext.Domain.Messages.Orders.Commands;
 
 namespace OrderContext.Command.API
@@ -60,6 +55,8 @@ namespace OrderContext.Command.API
                     fv.RegisterValidatorsFromAssemblyContaining<CreateOrderCommandValidator>();
                     fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
                 });
+
+            services.AddSingleton(_ => SystemClock.Now);
         }
 
         public void Configure(IApplicationBuilder app)
