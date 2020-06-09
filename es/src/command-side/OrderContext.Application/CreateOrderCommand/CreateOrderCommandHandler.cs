@@ -15,8 +15,7 @@ namespace OrderContext.Application.Commands.Handlers
         private readonly Now _now;
         public CreateOrderCommandHandler(IAggregateStore aggregateStore,
             Now now)
-            : base(aggregateStore) =>
-            _now = now;
+            : base(aggregateStore) =>  _now = now;
 
 
         public async Task<string> Handle(CreateOrderCommand request, CancellationToken cancellationToken)

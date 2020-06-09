@@ -1,5 +1,4 @@
-﻿using ImGalaxy.ES.Core;
-using OrderContext.Domain.Orders;
+﻿using ImGalaxy.ES.Core; 
 
 namespace OrderContext.Domain.Orders
 {
