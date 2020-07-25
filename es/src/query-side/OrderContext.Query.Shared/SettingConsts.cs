@@ -1,7 +1,7 @@
 ﻿
 namespace OrderContext.Query.Shared
 {
-    public class SettingConsts
+    public static class SettingConsts
     {
         public const string DATABASE = "QueryStore";
 

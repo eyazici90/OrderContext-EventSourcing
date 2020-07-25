@@ -13,11 +13,8 @@ namespace OrderContext.Command.Function.Host
 {
     public class Startup : IWebJobsStartup
     {
-        public void Configure(IWebJobsBuilder builder)
-        {
+        public void Configure(IWebJobsBuilder builder) => ConfigureServices(builder.Services);
 
-            ConfigureServices(builder.Services);
-        }
 
         private void ConfigureServices(IServiceCollection services)
         {
@@ -31,15 +28,12 @@ namespace OrderContext.Command.Function.Host
 
         }
 
-
-        private IServiceCollection ConfigureImGalaxyEs(IServiceCollection services) =>
+        private void ConfigureImGalaxyEs(IServiceCollection services) =>
             services
                 .AddImGalaxyESCosmosDBModule(configs =>
                 {
                     configs.DatabaseId = "OrderContextES";
-                    configs.EventCollectionName = "Events";
-                    configs.StreamCollectionName = "Streams";
-                    configs.SnapshotCollectionName = "Snapshots";
+                    configs.SnapshotContainerName = "Snapshots";
                     configs.EndpointUri = "https://localhost:8081";
                     configs.PrimaryKey = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
                     configs.ReadBatchSize = 1000;

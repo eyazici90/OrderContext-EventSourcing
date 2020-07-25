@@ -1,4 +1,5 @@
-﻿using ImGalaxy.ES.Core;
+﻿using Galaxy.Railway;
+using ImGalaxy.ES.Core;
 using MediatR;
 using OrderContext.Domain.Orders;
 using System.Threading;
@@ -10,14 +11,14 @@ namespace OrderContext.Application.Commands.Handlers
     public class ShipOrderCommandHandler : AggregateCommandHandlerBase<OrderState, OrderId>,
         IRequestHandler<ShipOrderCommand>
     {
-        private readonly IOrderPolicy _orderPolicy; 
+        private readonly IOrderPolicy _orderPolicy;
         public ShipOrderCommandHandler(IAggregateStore aggregateStore,
             IOrderPolicy orderPolicy) : base(aggregateStore) =>
-            _orderPolicy = orderPolicy; 
+            _orderPolicy = orderPolicy;
 
-        public async Task<Unit> Handle(ShipOrderCommand request, CancellationToken cancellationToken) =>
+        public async Task<MediatR.Unit> Handle(ShipOrderCommand request, CancellationToken cancellationToken) =>
             await UpdateAsync(new OrderId(request.OrderNumber), async state => Order.ShipOrder(state, _orderPolicy))
-                  .PipeToAsync(Unit.Value);
+                  .MapAsync(_ => MediatR.Unit.Value);
 
     }
 }

@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ImGalaxy.ES.InMemory" Version="2.2.0" />
-    <PackageReference Include="ImGalaxy.ES.TestBase" Version="2.2.0" />
+    <PackageReference Include="ImGalaxy.ES.InMemory" Version="2.2.1" />
+    <PackageReference Include="ImGalaxy.ES.TestBase" Version="2.2.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
     <PackageReference Include="xunit" Version="2.4.1" />

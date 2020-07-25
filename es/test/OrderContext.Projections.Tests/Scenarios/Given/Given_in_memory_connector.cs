@@ -2,7 +2,8 @@
 using ImGalaxy.ES.TestBase;
 using OrderContext.Projections.Connectors;
 using OrderContext.Projections.Projections;
-using OrderContext.Projections.Tests.Stubs; 
+using OrderContext.Projections.Tests.Stubs;
+using System.Collections.Generic;
 
 namespace OrderContext.Projections.Tests.Scenarios.Given
 {
@@ -15,7 +16,7 @@ namespace OrderContext.Projections.Tests.Scenarios.Given
             UseThe<ICosmosDbConnector>(connector);
 
             UseThe<IProjector>(() =>
-                 new ConnectedProjector<ICosmosDbConnector>(connector, _ => new OrderProjections())
+                 new ConnectedProjector<ICosmosDbConnector>(connector, _ => new List<object> { new OrderProjections() })
             );
 
             EnsureContainerInitialized();

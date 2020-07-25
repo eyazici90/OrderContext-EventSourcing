@@ -15,6 +15,7 @@ namespace OrderContext.Projections
 
         private void ConfigureServices(IServiceCollection services)
         {
+            //
         }
     }
 }
