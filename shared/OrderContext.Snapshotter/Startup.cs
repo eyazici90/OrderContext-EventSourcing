@@ -1,5 +1,5 @@
 ﻿using ImGalaxy.ES.Core;
-using ImGalaxy.ES.CosmosDB; 
+using ImGalaxy.ES.CosmosDB;
 using MediatR;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,14 +16,12 @@ namespace OrderContext.Snapshotter
            ConfigureServices(builder.Services);
 
         private void ConfigureServices(IServiceCollection services) =>
-              services 
+              services
              .AddTransient<ISnapshotter, SnapshotterCosmosDB<OrderState, OrderStateSnapshot>>()
              .AddImGalaxyESCosmosDBModule(configs =>
              {
                  configs.DatabaseId = "OrderContextES";
-                 configs.EventCollectionName = "Events";
-                 configs.StreamCollectionName = "Streams";
-                 configs.SnapshotCollectionName = "Snapshots";
+                 configs.SnapshotContainerName = "Snapshots";
                  configs.EndpointUri = "https://localhost:8081";
                  configs.PrimaryKey = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
                  configs.ReadBatchSize = 100;

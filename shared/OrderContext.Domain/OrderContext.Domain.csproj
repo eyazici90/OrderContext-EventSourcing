@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ImGalaxy.ES.Core" Version="2.2.0" />
+    <PackageReference Include="ImGalaxy.ES.Core" Version="2.2.1" />
   </ItemGroup>
 
   <ItemGroup>

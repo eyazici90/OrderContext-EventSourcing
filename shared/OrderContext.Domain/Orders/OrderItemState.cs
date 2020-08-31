@@ -1,10 +1,9 @@
-﻿using ImGalaxy.ES.Core;
+﻿using Galaxy.Railway;
+using ImGalaxy.ES.Core;
 using OrderContext.Domain.Messages.Orders;
 using OrderContext.Domain.Orders.Snapshots;
 using OrderContext.Domain.Products;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System; 
 using static OrderContext.Domain.Messages.Orders.Events;
 
 namespace OrderContext.Domain.Orders
@@ -25,19 +24,19 @@ namespace OrderContext.Domain.Orders
         {
             RegisterEvent<OrderItemAddedEvent>(When);
         }
-         
-        internal OrderItemState(OrderItemId id, ProductId productId, decimal unitPrice, decimal discount) =>
+
+        internal OrderItemState(OrderItemId id, ProductId productId, decimal unitPrice, decimal discount) : this() =>
             EnsureValidState(id, productId, unitPrice, discount);
 
         private void EnsureValidState(OrderItemId id, ProductId productId, decimal unitPrice, decimal discount) =>
-            this.ThrowsIf(_=> string.IsNullOrEmpty(id), new ArgumentNullException(id))
-                .ThrowsIf(_=> string.IsNullOrEmpty(productId), new ArgumentNullException(productId))
-                .ThrowsIf(_=> unitPrice < 0, new InvalidValueException(unitPrice.ToString()))
-                .ThrowsIf(_=> discount < 0, new InvalidValueException(discount.ToString()));
+            this.ThrowsIf(_ => string.IsNullOrEmpty(id), new ArgumentNullException(id))
+                .ThrowsIf(_ => string.IsNullOrEmpty(productId), new ArgumentNullException(productId))
+                .ThrowsIf(_ => unitPrice < 0, new InvalidValueException(unitPrice.ToString()))
+                .ThrowsIf(_ => discount < 0, new InvalidValueException(discount.ToString()));
 
 
         private void When(OrderItemAddedEvent @event) =>
-            With(this, state=> 
+            With(this, state =>
             {
                 state._id = new OrderItemId(@event.OrderItemId);
                 state._orderId = new OrderId(@event.OrderId);
@@ -61,11 +60,11 @@ namespace OrderContext.Domain.Orders
         public object TakeSnapshot() =>
             new OrderItemStateSnapshot
             {
-                Id = this._id,
-                OrderId = this._orderId,
-                ProductId = this._productId,
-                Discount = this._discount,
-                UnitPrice = this._unitPrice
+                Id = _id,
+                OrderId = _orderId,
+                ProductId = _productId,
+                Discount = _discount,
+                UnitPrice = _unitPrice
             };
     }
 }

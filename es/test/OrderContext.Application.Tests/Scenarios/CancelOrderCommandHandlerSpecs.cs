@@ -1,9 +1,8 @@
 ﻿using FluentAssertions;
-using ImGalaxy.ES.Core;
-using MediatR;
+using ImGalaxy.ES.Core; 
 using OrderContext.Application.Commands.Handlers;
-using OrderContext.Domain.Orders;
-using OrderContext.Integration.Tests;
+using OrderContext.Application.Tests.Scenarios.Given;
+using OrderContext.Domain.Orders; 
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -32,11 +31,5 @@ namespace OrderContext.Application.Tests.Commands.CancelOrderCommand
 
     }
 
-    public class Given_an_order_with_an_in_memory_aggregate_store : Given_in_memory_aggregate_store,
-        IClassFixture<SeedDataFixture>
-    {
-        protected SeedDataFixture SeedDataFixture { get; }
-        public Given_an_order_with_an_in_memory_aggregate_store(SeedDataFixture seedDataFixture) =>
-            SeedDataFixture = seedDataFixture;
-    }
+   
 }

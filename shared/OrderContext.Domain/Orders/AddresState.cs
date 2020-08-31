@@ -1,7 +1,5 @@
-﻿using ImGalaxy.ES.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ImGalaxy.ES.Core; 
+using System.Collections.Generic; 
 
 namespace OrderContext.Domain.Orders
 {

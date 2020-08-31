@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OrderContext.Domain.Orders
+﻿namespace OrderContext.Domain.Orders
 {
     public class OrderStatus
     {
-        public static OrderStatus Submitted = new OrderStatus(1, nameof(Submitted).ToLowerInvariant());
-        public static OrderStatus AwaitingValidation = new OrderStatus(2, nameof(AwaitingValidation).ToLowerInvariant());
-        public static OrderStatus StockConfirmed = new OrderStatus(3, nameof(StockConfirmed).ToLowerInvariant());
-        public static OrderStatus Paid = new OrderStatus(4, nameof(Paid).ToLowerInvariant());
-        public static OrderStatus Shipped = new OrderStatus(5, nameof(Shipped).ToLowerInvariant());
-        public static OrderStatus Cancelled = new OrderStatus(6, nameof(Cancelled).ToLowerInvariant());
+        public static OrderStatus Submitted { get; } = new OrderStatus(1, nameof(Submitted).ToLowerInvariant());
+        public static OrderStatus AwaitingValidation { get; } = new OrderStatus(2, nameof(AwaitingValidation).ToLowerInvariant());
+        public static OrderStatus StockConfirmed { get; } = new OrderStatus(3, nameof(StockConfirmed).ToLowerInvariant());
+        public static OrderStatus Paid { get; } = new OrderStatus(4, nameof(Paid).ToLowerInvariant());
+        public static OrderStatus Shipped { get; } = new OrderStatus(5, nameof(Shipped).ToLowerInvariant());
+        public static OrderStatus Cancelled { get; } = new OrderStatus(6, nameof(Cancelled).ToLowerInvariant());
 
-        private readonly int _id; 
+        private readonly int _id;
         public string Name { get; }
         private OrderStatus(int id, string name)
         {
