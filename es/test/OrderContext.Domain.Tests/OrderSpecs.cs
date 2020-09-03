@@ -13,7 +13,7 @@ namespace OrderContext.Domain.Tests
     public class OrderSpecs
     {
         [Fact]
-        public void creating_new_order_with_valid_state_should_create_order_success()
+        public void Should_success_when_order_created()
         {
             var fakeOrderId = OrderId.New;
             var fakeBuyerId = CustomerId.New;
@@ -32,7 +32,7 @@ namespace OrderContext.Domain.Tests
         }
 
         [Fact]
-        public void pay_existing_order_should_success()
+        public void Should_succes_when_order_paid()
         {
             var existingOrder = FakeOrder;
             CommandScenarioFor<OrderState>.With
@@ -45,7 +45,7 @@ namespace OrderContext.Domain.Tests
         }
 
         [Fact]
-        public void cancel_existing_order_should_success()
+        public void Should_succes_when_order_cancelled()
         {
             var existingOrder = FakeOrder;
             CommandScenarioFor<OrderState>.With
@@ -58,7 +58,7 @@ namespace OrderContext.Domain.Tests
         }
 
         [Fact]
-        public void add_order_item_to_existing_order_should_success()
+        public void Should_succes_when_order_item_added()
         {
             var existingOrder = FakeOrder;
             var fakeProductId = new ProductId(Guid.NewGuid().ToString());
@@ -76,7 +76,7 @@ namespace OrderContext.Domain.Tests
         }
 
         [Fact]
-        public void ship_order_without_paid_state_should_throw()
+        public void Should_throw_when_order_shipped_without_paid_state()
         {
             var order = FakeOrder;
             var moq = new Mock<IOrderPolicy>();
@@ -96,7 +96,7 @@ namespace OrderContext.Domain.Tests
         }
 
 
-        public OrderState FakeOrder
+        private OrderState FakeOrder
         {
             get
             {

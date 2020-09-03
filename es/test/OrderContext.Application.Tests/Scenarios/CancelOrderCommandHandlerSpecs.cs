@@ -27,9 +27,6 @@ namespace OrderContext.Application.Tests.Commands.CancelOrderCommand
             var aggregate = await The<IAggregateStore>().Load<OrderState>(SeedDataFixture.FakeOrderId);
 
             (aggregate.Root as OrderState).OrderStatus.Should().Be(OrderStatus.Cancelled);
-        }
-
-    }
-
-   
+        } 
+    } 
 }
