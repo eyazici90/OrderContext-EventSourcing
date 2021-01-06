@@ -35,11 +35,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Application.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Query.Function.Host", "src\query-side\OrderContext.Query.Function.Host\OrderContext.Query.Function.Host.csproj", "{545285CF-05A6-4261-9C9D-487F5A111E97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderContext.Projections", "src\query-side\OrderContext.Projections\OrderContext.Projections.csproj", "{A25CD78B-ECB1-4730-A172-F991B01B4926}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Projections", "src\query-side\OrderContext.Projections\OrderContext.Projections.csproj", "{A25CD78B-ECB1-4730-A172-F991B01B4926}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderContext.Query.Shared", "src\query-side\OrderContext.Query.Shared\OrderContext.Query.Shared.csproj", "{E8C62740-F780-47F7-B415-6698D8C9D067}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Query.Shared", "src\query-side\OrderContext.Query.Shared\OrderContext.Query.Shared.csproj", "{E8C62740-F780-47F7-B415-6698D8C9D067}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderContext.Projections.Tests", "test\OrderContext.Projections.Tests\OrderContext.Projections.Tests.csproj", "{56229FE4-5F54-4C3E-A27E-F69DB16FD549}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderContext.Projections.Tests", "test\OrderContext.Projections.Tests\OrderContext.Projections.Tests.csproj", "{56229FE4-5F54-4C3E-A27E-F69DB16FD549}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

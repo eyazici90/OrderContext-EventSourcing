@@ -22,4 +22,10 @@
     <ProjectReference Include="..\..\src\command-side\OrderContext.Application\OrderContext.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="xunit.runner.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
