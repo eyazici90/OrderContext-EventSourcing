@@ -13,7 +13,7 @@ namespace OrderContext.Integration.Publisher
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            builder.Services.AddSingleton<IEventBus>(e => new NullInstanceEventBus());
+            builder.Services.AddSingleton<IEventBus>(e => new NoEventBus());
         }
     }
 }
